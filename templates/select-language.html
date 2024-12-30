@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Language</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css.css" />
+</head>
+<body>
+  <h1>Select Your Language Preferences</h1>
+  
+  <h2>Language You Are Learning In</h2>
+  <div class="language-container">
+    <button class="language-button" onclick="selectLanguage('English', 'learning-in')">English</button>
+    <button class="language-button" onclick="selectLanguage('Spanish', 'learning-in')">Spanish</button>
+    <button class="language-button" onclick="selectLanguage('French', 'learning-in')">French</button>
+    <button class="language-button" onclick="selectLanguage('German', 'learning-in')">German</button>
+  </div>
+  
+  
+  <h1>                         </h1>
+  <h1>                         </h1>
+
+  <h2>Language You Are Learning</h2>
+  <div class="language-container">
+    <button class="language-button" onclick="selectLanguage('English', 'learning')">English</button>
+    <button class="language-button" onclick="selectLanguage('Spanish', 'learning')">Spanish</button>
+    <button class="language-button" onclick="selectLanguage('French', 'learning')">French</button>
+    <button class="language-button" onclick="selectLanguage('German', 'learning')">German</button>
+    <button class="language-button" onclick="selectLanguage('Chinese', 'learning')">Chinese</button>
+    <button class="language-button" onclick="selectLanguage('Arabic', 'learning')">Arabic</button>
+  </div>
+
+  <script>
+    function selectLanguage(language, type) {
+      const message = type === 'learning-in' 
+        ? `You are learning in: ${language}` 
+        : `You are learning: ${language}`;
+      alert(message);
+      // Add logic here for navigation or storing preferences
+    }
+  </script>
+</body>
+</html>
