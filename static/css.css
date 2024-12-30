@@ -288,3 +288,33 @@
       color: #aaa;
       cursor: not-allowed;
     }
+
+    
+    h1 {
+        margin-bottom: 50px;
+      }
+  
+      .button-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+  
+      .game-button {
+        background-color: #000;
+        color: #fff;
+        padding: 20px 40px;
+        border: 2px solid #fff;
+        border-radius: 5px;
+        font-family: 'Press Start 2P', monospace;
+        font-size: 14px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+  
+      .game-button:hover {
+        background-color: #fff;
+        color: #000;
+        transform: scale(1.1);
+      }
