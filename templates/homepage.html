@@ -4,10 +4,30 @@
     <link rel="stylesheet" href="../static/css.css" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <title>Home</title>
 </head>
 <body>
-<h1></h1>
-  
+  <form>
+  <h1>Welcome</h1>
+  <div class="button-container">
+    <button class="game-button" onclick="startNewGame()">New Game</button>
+    <button class="game-button" onclick="continueGame()">Continue Game</button>
+    <button class="game-button" onclick="startNewGame()">Change Character</button>
+    <button class="game-button" onclick="continueGame()">Settings</button>
+  </div>
+  </form>
+  <script>
+    function startNewGame() {
+      alert("Starting a new game!");
+      // Add logic to navigate to the level select page or reset progress
+    }
+
+    function continueGame() {
+      alert("Continuing your game!");
+      // Add logic to load saved progress or navigate to the last played level
+    }
+  </script>
 </body>
 </html>
+
