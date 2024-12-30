@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Sign up</title>
-    <link rel="stylesheet" href="../static/css.css" /> 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!--<link href="../static/css/styles.css" rel="stylesheet" type="text/css"/>-->
-    <!--<link rel="icon" type="image/x-icon" href="/static/images/favicon.ico" height="50%" width="auto">-->
-  </head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Sign up</title>
+        <link rel="stylesheet" href="../static/css.css" /> 
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <!--The next line is new, I intended this for the google sign in--> 
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+    </head>
   
   <body>
     <!--<div><a href="/"><img src="../static/images/classifylogoside.png" alt="ICF Logo" width="350" height="auto"></div></a>-->
@@ -15,7 +15,7 @@
       <fieldset>
         <legend>Sign Up</legend>
 
-        <div class="form-group">
+       <!-- <div class="form-group">
           <label class="col-md-4 control-label" for="first_name">First Name</label>
           <div class="col-md-4">
             <input id="first_name" name="first_name" type="text" placeholder="First" class="form-control" required="">
@@ -27,7 +27,7 @@
           <div class="col-md-4">
             <input id="last_name" name="last_name" type="text" placeholder="Last" class="form-control" required="">
           </div>
-        </div>
+        </div>-->
 
         <div class="form-group">
           <label class="col-md-4 control-label" for="email">Email</label>
@@ -59,7 +59,33 @@
             <button id="submit" name="submit" class="button-17">Submit</button>
           </div>
         </div>
+        
+        <div class="form-group">
+            <div class="col-md-4">
+              <!--<button id="submit" name="Sign in with google" class="button-17">Sign in with Google</button>-->
+              <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+            </div>
+          </div>
       </fieldset>
     </form>
-  </body>
+
+
+  <!-- Google Sign-In Script -->
+  <script>
+    // This function is called when the user successfully signs in with Google
+    function onSignIn(googleUser) {
+      // Get the Google User profile info
+      var profile = googleUser.getBasicProfile();
+      console.log('Full Name: ' + profile.getName());
+      console.log('Given Name: ' + profile.getGivenName());
+      console.log('Email: ' + profile.getEmail());
+  
+      // Get the ID Token
+      var id_token = googleUser.getAuthResponse().id_token;
+      console.log('ID Token: ' + id_token);
+    }  
+  </script>  
+  
+
+  </body>   
 </html>
