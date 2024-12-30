@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="../static/css.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Character Selection</title>
 </head>
 <body>
+<form>
 <h1>Select Character</h1>
   <div class="character-selection">
     <!-- Empty Box 1 -->
@@ -27,27 +29,19 @@
       <div class="character-name">Character 3</div>
     </div>
   </div>
-
+</form>
   <!-- Generate Character Button -->
   
-    <button class="generate-button" id="generateButton">Generate Character</button>
-    <div id="textBoxContainer"></div>
+  <input class="c-checkbox" type="checkbox" id="checkbox">
+  <div class="c-formContainer">
+    <form class="c-form" action="">
+      <input class="c-form__input" placeholder="describe guy" type="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" required>
+      <label class="c-form__buttonLabel" for="checkbox">
+        <button class="c-form__button" type="button">Send</button>
+      </label>
+      <label class="c-form__toggle" for="checkbox" data-title="Generate"></label>
+    </form>
+  </div> 
 
-    <script>
-      document.getElementById("generateButton").addEventListener("click", function() {
-        // Check if the text box already exists
-        if (!document.getElementById("characterTextBox")) {
-          // Create a new input element
-          const textBox = document.createElement("input");
-          textBox.type = "text";
-          textBox.id = "characterTextBox";
-          textBox.placeholder = "Enter character details...";
-          
-          // Append the text box to the container
-          document.getElementById("textBoxContainer").appendChild(textBox);
-        }
-      });
-    </script>  
-  
 </body>
 </html>
