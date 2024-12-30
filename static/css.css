@@ -5,3 +5,68 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+      flex-direction: column; /* To align the character boxes and button vertically */
+    }
+
+    .character-selection {
+      display: grid;
+      grid-template-columns: repeat(3, 200px);
+      gap: 20px;
+    }
+
+    .character {
+      width: 200px;
+      height: 200px;
+      background-color: #000; /* Set the background color of the whole box to black */
+      border: 5px solid #fff;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .character:hover {
+      transform: scale(1.1);
+    }
+
+    .character-name {
+      position: absolute;
+      bottom: 5px;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Pixelated font for the button */
+    .generate-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-family: 'Courier New', Courier, monospace; /* Pixelated font style */
+      background-color: #000; /* Black background for the button */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      letter-spacing: 2px; /* Adds a pixelated effect */
+    }
+
+    .generate-button:hover {
+      background-color: #333; /* Slightly lighter black when hovered */
+    }
