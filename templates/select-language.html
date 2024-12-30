@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../static/css.css" />
 </head>
 <body>
+  <form>
   <h1>Select Your Language Preferences</h1>
   
   <h2>Language You Are Learning In</h2>
@@ -31,7 +32,7 @@
     <button class="language-button" onclick="selectLanguage('Chinese', 'learning')">Chinese</button>
     <button class="language-button" onclick="selectLanguage('Arabic', 'learning')">Arabic</button>
   </div>
-
+</form>
   <script>
     function selectLanguage(language, type) {
       const message = type === 'learning-in' 

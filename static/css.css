@@ -1,9 +1,14 @@
+    h1,h2 {
+      color: rgb(255, 255, 255);  /* Example color */
+    }
+
+    
     /*This is for the code for the login/signup border*/
     form {
-      width: 250px ;
+      width: auto ;
       margin: 0 auto;
-      border: 3px solid #000000;
-      background-color: #f3f2ce;
+      border: 3px solid #f3d352;
+      background-color: #2a4788;
       padding: 10px;
         /*This is for making border pixelated*/
       box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2),  /* Outer shadow */
@@ -283,3 +288,33 @@
       color: #aaa;
       cursor: not-allowed;
     }
+
+    
+    h1 {
+        margin-bottom: 50px;
+      }
+  
+      .button-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+  
+      .game-button {
+        background-color: #000;
+        color: #fff;
+        padding: 20px 40px;
+        border: 2px solid #fff;
+        border-radius: 5px;
+        font-family: 'Press Start 2P', monospace;
+        font-size: 14px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+  
+      .game-button:hover {
+        background-color: #fff;
+        color: #000;
+        transform: scale(1.1);
+      }
