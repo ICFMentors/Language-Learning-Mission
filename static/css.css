@@ -123,3 +123,37 @@
     }
  
     
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    .level-container {
+      display: grid;
+      grid-template-columns: repeat(4, 150px);
+      gap: 20px;
+    }
+
+    .level-button {
+      background-color: #000;
+      color: #fff;
+      padding: 20px;
+      border: 2px solid #fff;
+      border-radius: 5px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .level-button:hover {
+      background-color: #fff;
+      color: #000;
+      transform: scale(1.1);
+    }
+
+    .level-button:disabled {
+      background-color: #555;
+      color: #aaa;
+      cursor: not-allowed;
+    }
