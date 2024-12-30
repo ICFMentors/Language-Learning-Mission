@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 import sqlite3
 import sys
 import os
+import openai
 
 app = Flask(__name__)
 
