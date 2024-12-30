@@ -10,11 +10,11 @@ import openai
 
 app = Flask(__name__)
 
-db = SQLAlchemy(app)
+#db = SQLAlchemy(app)
 
 # Connect to SQLite database
-conn = sqlite3.connect('data.db')
-cursor = conn.cursor()
+#conn = sqlite3.connect('data.db')
+#cursor = conn.cursor()
 
 @app.route('/')
 def index():
@@ -22,25 +22,25 @@ def index():
 
 
 @app.route('/signup')
-def index():
+def signup():
     return render_template('signup.html')
 
 @app.route('/login')
-def index():
+def login():
     return render_template('login.html')
 
 @app.route('/select-language')
-def index():
+def selectLanguage():
     return render_template('select-language.html')
 
 @app.route('/create-character')
-def index():
+def createCharacter():
     return render_template('create-character.html')
 
 @app.route('/homepage')
-def index():
+def homepage():
     return render_template('homepage.html')
 
 @app.route('/select-level')
-def index():
+def selectLevel():
     return render_template('select-level.html')
