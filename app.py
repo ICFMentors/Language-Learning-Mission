@@ -8,3 +8,6 @@ app = Flask(__name__)
 
 db = SQLAlchemy(app)
 
+# Connect to SQLite database
+conn = sqlite3.connect('data.db')
+cursor = conn.cursor()
