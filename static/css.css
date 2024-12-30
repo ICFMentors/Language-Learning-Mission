@@ -202,4 +202,84 @@
       width: auto;
       z-index: 2;
     }
+
+
+
+    body {
+      font-family: 'Press Start 2P', monospace;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #282c34;
+      color: #050505;
+      text-align: center;
+    }
+
+    h1, h2 {
+      margin: 10px 0;
+    }
+
+    .language-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .language-button {
+      background-color: #000;
+      color: #fbf8f8;
+      padding: 15px 30px;
+      border: 2px solid #fff;
+      border-radius: 5px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .language-button:hover {
+      background-color: #fff;
+      color: #000;
+      transform: scale(1.1);
+    }
+ 
     
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    .level-container {
+      display: grid;
+      grid-template-columns: repeat(4, 150px);
+      gap: 20px;
+    }
+
+    .level-button {
+      background-color: #000;
+      color: #fff;
+      padding: 20px;
+      border: 2px solid #fff;
+      border-radius: 5px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .level-button:hover {
+      background-color: #fff;
+      color: #000;
+      transform: scale(1.1);
+    }
+
+    .level-button:disabled {
+      background-color: #555;
+      color: #aaa;
+      cursor: not-allowed;
+    }
