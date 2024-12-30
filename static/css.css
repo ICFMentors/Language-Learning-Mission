@@ -68,6 +68,12 @@
     .generate-button:hover {
       background-color: #333; /* Slightly lighter black when hovered */
     }
+
+
+    #textBoxContainer {
+      margin-top: 10px;
+    }
+
       /*This is for the code for the login/signup border*/
     form {
       width: 300px ;

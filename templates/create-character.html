@@ -29,6 +29,25 @@
   </div>
 
   <!-- Generate Character Button -->
-  <button class="generate-button">Generate Character</button>
+  
+    <button class="generate-button" id="generateButton">Generate Character</button>
+    <div id="textBoxContainer"></div>
+
+    <script>
+      document.getElementById("generateButton").addEventListener("click", function() {
+        // Check if the text box already exists
+        if (!document.getElementById("characterTextBox")) {
+          // Create a new input element
+          const textBox = document.createElement("input");
+          textBox.type = "text";
+          textBox.id = "characterTextBox";
+          textBox.placeholder = "Enter character details...";
+          
+          // Append the text box to the container
+          document.getElementById("textBoxContainer").appendChild(textBox);
+        }
+      });
+    </script>  
+  
 </body>
 </html>
