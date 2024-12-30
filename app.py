@@ -15,3 +15,32 @@ db = SQLAlchemy(app)
 # Connect to SQLite database
 conn = sqlite3.connect('data.db')
 cursor = conn.cursor()
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+
+@app.route('/signup')
+def index():
+    return render_template('signup.html')
+
+@app.route('/login')
+def index():
+    return render_template('login.html')
+
+@app.route('/select-language')
+def index():
+    return render_template('select-language.html')
+
+@app.route('/create-character')
+def index():
+    return render_template('create-character.html')
+
+@app.route('/homepage')
+def index():
+    return render_template('homepage.html')
+
+@app.route('/select-level')
+def index():
+    return render_template('select-level.html')
