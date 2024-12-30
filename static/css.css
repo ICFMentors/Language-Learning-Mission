@@ -70,3 +70,12 @@ body {
     .generate-button:hover {
       background-color: #333; /* Slightly lighter black when hovered */
     }
+      /*This is for the code for the login/signup border*/
+    form {
+      width: 300px ;
+      margin: 0 auto;
+      border: 3px solid #000000;
+      background-color: #f3f2ce;
+      padding: 10px;
+    }
+    
