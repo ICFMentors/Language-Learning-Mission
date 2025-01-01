@@ -29,8 +29,8 @@ db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 
 @login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))  # Make sure User model matches Player table schema
+def load_user(player_id):
+    return Player.query.get(int(player_id)) 
 
 # In your app.py file (or wherever you initialize the app)
 with app.app_context():
@@ -71,7 +71,6 @@ class RegistrationForm(FlaskForm):
 
 @app.route('/login')
 def login():
-def login():
     return render_template('login.html')
 
 @app.route('/select-language')
@@ -83,7 +82,6 @@ def createcharacter():
     return render_template('create-character.html')
 
 @app.route('/homepage')
-def homepage():
 def homepage():
     return render_template('homepage.html')
 
