@@ -21,6 +21,7 @@ const game = new Phaser.Game(config);
 function preload() {
     // Load assets here
     this.load.image('player', 'static/images/character3nobackground.png');
+    this.load.image('npc', 'static/images/cashierNoBackground.png')
     this.load.image('map', 'static/images/gameScene1.webp');
 }
 
@@ -60,14 +61,29 @@ function create() {
 
     // Add player sprite
     this.player = this.physics.add.sprite(config.width / 2, config.height / 2, 'player');
-    this.player.setScale(0.2);
+
     // Scale down the character to look proportional in the store
+    this.player.setScale(0.2);
+    // cannot leave world
     this.player.setCollideWorldBounds(true);
     this.physics.add.collider(this.player, this.shelves);
 
     // Add keyboard controls
     this.cursors = this.input.keyboard.createCursorKeys();
+
+    // Add cashier interaction
+    this.cashier = this.physics.add.staticSprite(config.width / 2, config.height / 10, 'npc'); // Position for cashier table
+    this.cashier.setScale(0.15);
+    this.physics.add.existing(this.cashier);
+
+    // Add spacebar input for interaction
+    this.spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
+    this.physics.add.overlap(this.player, this.cashier, () => {
+        this.canInteract = true;
+    }, null, this);
 }
+
 
 function update() {
     // Player movement
@@ -86,4 +102,27 @@ function update() {
     } else {
         this.player.setVelocityY(0);
     }
+
+    // Handle interaction with the cashier
+    if (this.spaceKey.isDown && this.canInteract) {
+        this.canInteract = false;
+        interactWithCashier(); // Call a Python function or backend
+    }
+}
+
+function interactWithCashier() {
+    // Placeholder for Python function integration
+    fetch('/interact', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ action: 'interact_with_cashier' })
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Cashier says:', data.message);
+            // Display dialogue or perform other actions
+        })
+        .catch(err => console.error('Error interacting with cashier:', err));
 }
