@@ -40,15 +40,18 @@ CREATE TABLE Achievement (
 
 -- The Player table stores player information, including their progress and achievements.
 CREATE TABLE Player (
-    PK_Player_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-    Name TEXT NOT NULL,
-    Age INTEGER NOT NULL CHECK(Age >= 0), -- Prevents invalid negative ages.
-    Level INTEGER NOT NULL CHECK(Level > 0), -- Players must have a positive level.
-    Experience INTEGER NOT NULL CHECK(Experience >= 0), -- Experience must be non-negative.
-    Current_Level_ID INTEGER,
-    Achievement_ID INTEGER,
-    FOREIGN KEY (Achievement_ID) REFERENCES Achievement(Achievement_ID) ON DELETE SET NULL -- Keeps the player record intact if the achievement is removed.
+    user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email TEXT NOT NULL UNIQUE,
+    username TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL,
+    age INTEGER NOT NULL CHECK(age >= 0),
+    level INTEGER NOT NULL CHECK(level >= 0),
+    experience INTEGER NOT NULL CHECK(experience >= 0),
+    current_level_id INTEGER,
+    achievement_id INTEGER,
+    FOREIGN KEY (achievement_id) REFERENCES Achievement(achievement_id) ON DELETE SET NULL
 );
+
 
 -- The Quest table defines quests, their difficulty, and required player levels.
 CREATE TABLE Quest (
@@ -98,7 +101,7 @@ CREATE INDEX idx_achievement_points ON Achievement(Points);
 
 -- Populate tables with sample data
 -- Insert sample NPCs.
-INSERT INTO NPC (Name, Role) VALUES
+/*INSERT INTO NPC (Name, Role) VALUES
 ('Guardian', 'Protector'),
 ('Merchant', 'Trader');
 
@@ -137,3 +140,4 @@ INSERT INTO Quest (Quest_Name, Description, Difficulty, Status_ID, Required_Leve
 INSERT INTO Player_Quest (Player_ID, Quest_ID, Status_ID, Completion_Date) VALUES
 (1, 1, 1, NULL),
 (2, 2, 2, '2023-01-15');
+*/
