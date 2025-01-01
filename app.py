@@ -14,8 +14,8 @@ import os
 import openai
 
 # Connect to SQLite database
-conn = sqlite3.connect('data.db')
-cursor = conn.cursor()
+#conn = sqlite3.connect('data.db')
+#cursor = conn.cursor()
 
 app = Flask(__name__)
 
@@ -71,6 +71,7 @@ class RegistrationForm(FlaskForm):
 
 @app.route('/login')
 def login():
+def login():
     return render_template('login.html')
 
 @app.route('/select-language')
@@ -82,6 +83,7 @@ def createcharacter():
     return render_template('create-character.html')
 
 @app.route('/homepage')
+def homepage():
 def homepage():
     return render_template('homepage.html')
 
