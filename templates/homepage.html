@@ -9,15 +9,28 @@
     <title>Home</title>
 </head>
 <body>
-  <form>
-    <h1 class="text-center">Welcome {{ current_user.username }}</h1>
-    <div class="button-container">
-      <button class="game-button" onclick="startNewGame()">New Game</button>
-      <button class="game-button" onclick="continueGame()">Continue Game</button>
-      <button class="game-button" onclick="startNewGame()">Change Character</button>
-      <button class="game-button" onclick="continueGame()">Settings</button>
+  <h1 class="text-center">Welcome {{ current_user.username }}</h1>
+  <div class="button-container">
+    <!-- New Game Button -->
+    <form method="get" action="/select-level">
+      <button class="game-button" type="submit">New Game</button>
+    </form>
+
+    <!-- Continue Game Button -->
+    <form method="get" action="/continue-game">
+      <button class="game-button" type="submit">Continue Game</button>
+    </form>
+
+    <!-- Change Character Button -->
+    <form method="get" action="/create-character">
+      <button class="game-button" type="submit">Change Character</button>
+    </form>
+
+    <!-- Settings Button -->
+    <form method="get" action="/settings">
+      <button class="game-button" type="submit">Settings</button>
+    </form>
     </div>
-  </form>
   <script>
     function startNewGame() {
       alert("Starting a new game!");
