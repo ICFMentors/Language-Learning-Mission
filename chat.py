@@ -1,14 +1,15 @@
 import gradio as gr
 from openai import OpenAI
 from dotenv import load_dotenv, find_dotenv
-_ = load_dotenv(find_dotenv()) # read local .env file
 import os
 
-openai.api_key  = os.getenv('OPENAI_API_KEY')
+_ = load_dotenv(find_dotenv()) # read local .env file
+
+openai_api_key = os.environ('OPENAI_API_KEY')
 
 # Set your OpenAI API key
   # Replace with your actual API key
-client = OpenAI(api_key=openAI_API)
+client = OpenAI(api_key=openai_api_key)
 
 
 # Step 1: Function to translate text
