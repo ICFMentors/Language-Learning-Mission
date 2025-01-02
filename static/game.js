@@ -20,9 +20,9 @@ const game = new Phaser.Game(config);
 
 function preload() {
     // Load assets here
-    this.load.image('player', 'static/images/character3nobackground.png');
-    this.load.image('npc', 'static/images/cashierNoBackground.png')
-    this.load.image('map', 'static/images/gameScene1.webp');
+    this.load.image('player', '../static/images/character3nobackground.png');
+    this.load.image('npc', '../static/images/cashierNoBackground.png')
+    this.load.image('map', '../static/images/gameScene1.webp');
 }
 
 function create() {

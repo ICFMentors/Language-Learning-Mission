@@ -155,7 +155,10 @@ def signup():
     return render_template('signup.html', form=form)
 
 
-# Other routes (login, homepage, etc.) will follow here
+@app.route('/game')
+def playGame():
+    return render_template('game.html')
+
 
 
 if __name__ == "__main__":
