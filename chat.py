@@ -1,14 +1,16 @@
 import gradio as gr
-from openai import OpenAI
+#from openai import OpenAI
+import openai
 from dotenv import load_dotenv, find_dotenv
-_ = load_dotenv(find_dotenv()) # read local .env file
 import os
 
-openai.api_key  = os.getenv('OPENAI_API_KEY')
+_ = load_dotenv(find_dotenv()) # read local .env file
+#openAI_api_key = os.environ('OPENAI_API_KEY')
+openai.api_key = os.environ['OPENAI_API_KEY']
 
 # Set your OpenAI API key
   # Replace with your actual API key
-client = OpenAI(api_key=openAI_API)
+client = openai #OpenAI(api_key=openAI_api_key)
 
 
 # Step 1: Function to translate text
@@ -28,7 +30,7 @@ def translate_text(text, source_language="Arabic", target_language="English"):
     
     try:
         # API call using ChatCompletion
-        response = client.chat.completions.create(model="gpt-4o-mini",  # Use GPT-4 or another available model
+        response = client.ChatCompletion.create(model="gpt-4o-mini",  # Use GPT-4 or another available model
         messages=[
             {"role": "system", "content": f"You are a professional translator from {source_language} to {target_language}"},
             {"role": "user", "content": f"Translate the following from {source_language} to {target_language}: {text}"}
