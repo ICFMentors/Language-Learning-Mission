@@ -101,7 +101,7 @@ def login():
         user = Player.query.filter_by(email=email).first()
         if user and check_password_hash(user.password, password):  # Check hashed password
             login_user(user)
-            return redirect(url_for('dashboard'))  # Redirect to the dashboard after login
+            return redirect(url_for('homepage'))  # Redirect to the homepage after login
         else:
             flash('Invalid email or password', 'danger')
     
