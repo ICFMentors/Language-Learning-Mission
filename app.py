@@ -38,7 +38,7 @@ with app.app_context():
 
 
 class Player(db.Model, UserMixin):  # Updated to Player to match your table name
-    userID = db.Column(db.Integer, primary_key=True, autoincrement=True)  # Automatically increment the userID
+    user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)  # Automatically increment the userID
     email = db.Column(db.String(100), unique=True, nullable=False)  # Email should be unique and cannot be null
     username = db.Column(db.String(50), unique=True, nullable=False)  # Username is unique and cannot be null
     password = db.Column(db.String(100), nullable=False)  # Password cannot be null
@@ -47,6 +47,9 @@ class Player(db.Model, UserMixin):  # Updated to Player to match your table name
     experience = db.Column(db.Integer, default=0, nullable=False)  # Default value for experience (0 if not specified)
     current_level_id = db.Column(db.Integer, nullable=True)  # Foreign key for the current level (can be nullable)
     achievement_id = db.Column(db.Integer, db.ForeignKey('achievement.achievement_id', ondelete='SET NULL'))  # Foreign key for achievements
+
+    def get_id(self):
+        return str(self.user_id)
 
     # Relationships
     achievement = db.relationship('Achievement', backref='players', passive_deletes=True)
@@ -69,8 +72,39 @@ class RegistrationForm(FlaskForm):
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     age = IntegerField('Age', validators=[DataRequired()])
 
-@app.route('/login')
+class Achievement(db.Model):
+    __tablename__ = 'achievement'  # Table name matches the foreign key reference
+    achievement_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(255), nullable=True)
+
+    def __repr__(self):
+        return f'<Achievement {self.name}>'
+
+
+@login_manager.user_loader
+def load_user(player_id):
+    return Player.query.get(int(player_id))
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        
+        # Check if user exists and if password matches
+        user = Player.query.filter_by(email=email).first()
+        if user and check_password_hash(user.password, password):  # Check hashed password
+            login_user(user)
+            return redirect(url_for('dashboard'))  # Redirect to the dashboard after login
+        else:
+            flash('Invalid email or password', 'danger')
+    
     return render_template('login.html')
 
 @app.route('/select-language')
@@ -82,15 +116,17 @@ def createcharacter():
     return render_template('create-character.html')
 
 @app.route('/homepage')
+@login_required
 def homepage():
     return render_template('homepage.html')
+
 
 @app.route('/select-level')
 def selectlevel():
     return render_template('select-level.html')
 
 
-@app.route('/sign-up', methods=["GET", "POST"])
+@app.route('/signup', methods=["GET", "POST"])
 def signup():
     form = RegistrationForm()
 
@@ -101,7 +137,7 @@ def signup():
             username=form.username.data,
             password=generate_password_hash(form.password.data),  # Hash password
             age=form.age.data,
-            level=0,  # Default value for level
+            level=1,  # Default value for level
             experience=0  # Default value for experience
         )
 
@@ -109,11 +145,14 @@ def signup():
         db.session.add(new_player)
         db.session.commit()
 
-        # Redirect to a login page or profile page after successful registration
-        flash("Registration successful! Please log in.")
-        return redirect(url_for('login'))  # Define the login route
 
-    return render_template('sign-up.html', form=form)
+        # Automatically log the user in after registration
+        login_user(new_player)
+
+        flash("Registration successful! Welcome!")
+        return redirect(url_for('homepage'))  # Redirect to homepage after sign-up
+
+    return render_template('signup.html', form=form)
 
 
 # Other routes (login, homepage, etc.) will follow here
@@ -124,3 +163,12 @@ if __name__ == "__main__":
         db.create_all()  # Creates all tables defined in the models
         print("Database tables created successfully.")
     app.run(debug=True)
+
+
+try:
+    db.session.commit()
+except Exception as e:
+    print(f"Error committing to database: {e}")
+
+if Player.level <= 0:
+    Player.level = 1  # Set a default level (or another positive number)

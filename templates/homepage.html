@@ -10,13 +10,13 @@
 </head>
 <body>
   <form>
-  <h1>Welcome</h1>
-  <div class="button-container">
-    <button class="game-button" onclick="startNewGame()">New Game</button>
-    <button class="game-button" onclick="continueGame()">Continue Game</button>
-    <button class="game-button" onclick="startNewGame()">Change Character</button>
-    <button class="game-button" onclick="continueGame()">Settings</button>
-  </div>
+    <h1 class="text-center">Welcome {{ current_user.username }}</h1>
+    <div class="button-container">
+      <button class="game-button" onclick="startNewGame()">New Game</button>
+      <button class="game-button" onclick="continueGame()">Continue Game</button>
+      <button class="game-button" onclick="startNewGame()">Change Character</button>
+      <button class="game-button" onclick="continueGame()">Settings</button>
+    </div>
   </form>
   <script>
     function startNewGame() {

@@ -45,7 +45,7 @@ CREATE TABLE Player (
     username TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
     age INTEGER NOT NULL CHECK(age >= 0),
-    level INTEGER NOT NULL CHECK(level >= 0),
+    level INTEGER DEFAULT 1 CHECK(level > 0),
     experience INTEGER NOT NULL CHECK(experience >= 0),
     current_level_id INTEGER,
     achievement_id INTEGER,
