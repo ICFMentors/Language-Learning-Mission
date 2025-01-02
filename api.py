@@ -1,5 +1,9 @@
 from openai import OpenAI
 
+# Set your OpenAI API key
+  # Replace with your actual API key
+client = OpenAI(api_key="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")
+
 
 # Step 1: Function to translate text
 def translate_text(text, source_language="Arabic", target_language="English"):
