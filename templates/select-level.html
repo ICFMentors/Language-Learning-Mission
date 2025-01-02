@@ -45,27 +45,29 @@
   </style>
 </head>
 <body>
-  <h1>Select Your Level</h1>
-  <div class="level-container">
-    <button class="level-button" id="level1" onclick="selectLevel(1)">Level 1</button>
-    <button class="level-button" id="level2" disabled onclick="selectLevel(2)">Level 2</button>
-    <button class="level-button" id="level3" disabled onclick="selectLevel(3)">Level 3</button>
-    <button class="level-button" id="level4" disabled onclick="selectLevel(4)">Level 4</button>
-    <button class="level-button" id="level5" disabled onclick="selectLevel(5)">Level 5</button>
-    <button class="level-button" id="level6" disabled onclick="selectLevel(6)">Level 6</button>
-    <button class="level-button" id="level7" disabled onclick="selectLevel(7)">Level 7</button>
-    <button class="level-button" id="level8" disabled onclick="selectLevel(8)">Level 8</button>
-  </div>
+  <form>
+    <h1>Select Your Level</h1>
+    <div class="level-container">
+      <button class="level-button" id="level1" onclick="selectLevel(1)">Level 1</button>
+      <button class="level-button" id="level2" disabled onclick="selectLevel(2)">Level 2</button>
+      <button class="level-button" id="level3" disabled onclick="selectLevel(3)">Level 3</button>
+      <button class="level-button" id="level4" disabled onclick="selectLevel(4)">Level 4</button>
+      <button class="level-button" id="level5" disabled onclick="selectLevel(5)">Level 5</button>
+      <button class="level-button" id="level6" disabled onclick="selectLevel(6)">Level 6</button>
+      <button class="level-button" id="level7" disabled onclick="selectLevel(7)">Level 7</button>
+      <button class="level-button" id="level8" disabled onclick="selectLevel(8)">Level 8</button>
+    </div>
 
-  <script>
-    function selectLevel(level) {
-      alert(`You selected Level ${level}`);
-      
-      // Simulate level completion for demo purposes
-      if (level < 8) {
-        document.getElementById(`level${level + 1}`).disabled = false;
+    <script>
+      function selectLevel(level) {
+        alert(`You selected Level ${level}`);
+        
+        // Simulate level completion for demo purposes
+        if (level < 8) {
+          document.getElementById(`level${level + 1}`).disabled = false;
+        }
       }
-    }
-  </script>
+    </script>
+  </form>
 </body>
 </html>
