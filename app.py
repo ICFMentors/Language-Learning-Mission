@@ -108,11 +108,11 @@ def login():
     return render_template('login.html')
 
 @app.route('/select-language')
-def selectlanguage():
+def select_language():
     return render_template('select-language.html')
 
 @app.route('/create-character')
-def createcharacter():
+def create_character():
     return render_template('create-character.html')
 
 @app.route('/homepage')
@@ -122,7 +122,7 @@ def homepage():
 
 
 @app.route('/select-level')
-def selectlevel():
+def select_level():
     return render_template('select-level.html')
 
 
