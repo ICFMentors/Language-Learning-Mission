@@ -7,6 +7,13 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../static/css.css" />
+  <style>
+    .language-button:disabled {
+      background-color: #555;
+      color: #aaa;
+      cursor: not-allowed;
+    }
+  </style>
 </head>
 <body>
   <form>
@@ -15,9 +22,11 @@
   <h2>Language You Are Learning In</h2>
   <div class="language-container">
     <button class="language-button" onclick="selectLanguage('English', 'learning-in')">English</button>
-    <button class="language-button" onclick="selectLanguage('Spanish', 'learning-in')">Spanish</button>
-    <button class="language-button" onclick="selectLanguage('French', 'learning-in')">French</button>
-    <button class="language-button" onclick="selectLanguage('German', 'learning-in')">German</button>
+    <button class="language-button" disabled onclick="selectLanguage('Spanish', 'learning-in')">Spanish</button>
+    <button class="language-button" disabled onclick="selectLanguage('French', 'learning-in')">French</button>
+    <button class="language-button" disabled onclick="selectLanguage('German', 'learning-in')">German</button>
+    <button class="language-button" disabled onclick="selectLanguage('Chinese', 'learning-in')">Chinese</button>
+    <button class="language-button" disabled onclick="selectLanguage('Arabic', 'learning-in')">Arabic</button>
   </div>
   
   
@@ -26,11 +35,11 @@
 
   <h2>Language You Are Learning</h2>
   <div class="language-container">
-    <button class="language-button" onclick="selectLanguage('English', 'learning')">English</button>
-    <button class="language-button" onclick="selectLanguage('Spanish', 'learning')">Spanish</button>
-    <button class="language-button" onclick="selectLanguage('French', 'learning')">French</button>
-    <button class="language-button" onclick="selectLanguage('German', 'learning')">German</button>
-    <button class="language-button" onclick="selectLanguage('Chinese', 'learning')">Chinese</button>
+    <button class="language-button" disabled onclick="selectLanguage('English', 'learning')">English</button>
+    <button class="language-button" disabled onclick="selectLanguage('Spanish', 'learning')">Spanish</button>
+    <button class="language-button" disabled onclick="selectLanguage('French', 'learning')">French</button>
+    <button class="language-button" disabled onclick="selectLanguage('German', 'learning')">German</button>
+    <button class="language-button" disabled onclick="selectLanguage('Chinese', 'learning')">Chinese</button>
     <button class="language-button" onclick="selectLanguage('Arabic', 'learning')">Arabic</button>
   </div>
 </form>
