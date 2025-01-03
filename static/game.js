@@ -103,14 +103,40 @@ function update() {
         this.player.setVelocityY(0);
     }
 
-    // Handle interaction with the cashier
-    if (this.spaceKey.isDown && this.canInteract) {
-        this.canInteract = false;
-        interactWithCashier(); // Call a Python function or backend
-    }
+    // Add spacebar input for interaction
+    this.spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+    this.canInteract = false;
+
+    this.physics.add.overlap(this.player, this.cashier, () => {
+        this.canInteract = true;
+        const interactPrompt = document.getElementById('interact-prompt');
+        interactPrompt.style.display = 'block';
+        interactPrompt.style.left = `${this.cashier.x - 50}px`;
+        interactPrompt.style.top = `${this.cashier.y - 80}px`;
+    }, null, this);
+
+    this.physics.add.overlap(this.player, this.cashier, () => {
+        this.canInteract = true;
+    }, null, this);
+
+    this.physics.add.collider(this.player, this.cashier, () => {
+        const interactPrompt = document.getElementById('interact-prompt');
+        if (!this.canInteract) {
+            interactPrompt.style.display = 'none';
+        }
+    });
 }
 
 function interactWithCashier() {
+    // Display dialogue box for interaction
+    const dialogueBox = document.getElementById('dialogue-box');
+    dialogueBox.style.display = 'block';
+    dialogueBox.textContent = "Cashier: Welcome! How can I help you today?";
+
+    setTimeout(() => {
+        dialogueBox.style.display = 'none';
+    }, 3000); // Hide dialogue after 3 seconds
+
     // Placeholder for Python function integration
     fetch('/interact', {
         method: 'POST',
@@ -119,10 +145,11 @@ function interactWithCashier() {
         },
         body: JSON.stringify({ action: 'interact_with_cashier' })
     })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Cashier says:', data.message);
-            // Display dialogue or perform other actions
-        })
-        .catch(err => console.error('Error interacting with cashier:', err));
+    .then(response => response.json())
+    .then(data => {
+        console.log('Cashier says:', data.message);
+        // Update dialogue box with Python response
+        dialogueBox.textContent = data.message;
+    })
+    .catch(err => console.error('Error interacting with cashier:', err));
 }
