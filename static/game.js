@@ -20,8 +20,16 @@ const game = new Phaser.Game(config);
 
 function preload() {
     // Load assets here
-    this.load.image('player', '../static/images/character3nobackground.png');
-    this.load.image('npc', '../static/images/cashierNoBackground.png')
+    this.load.image('playerIdle', '../static/images/playerIdle.png');
+    this.load.spritesheet('playerMoving', '../static/images/ezgif.com-gif-to-sprite-converter.png', {
+        frameWidth: 1024,
+        frameHeight: 1024
+    });
+    this.load.spritesheet('playerMovingLeft', '../static/images/ezgif.com-reverse.png', {
+        frameWidth: 1024,
+        frameHeight: 1024
+    });
+    this.load.image('npc', '../static/images/cashierNoBackground.png');
     this.load.image('map', '../static/images/gameScene1.webp');
 }
 
@@ -38,9 +46,22 @@ function create() {
     this.player = this.physics.add.sprite(config.width / 2, config.height / 2, 'player');
 
     // Scale down the character to look proportional in the store
-    this.player.setScale(0.2);
+    this.player.setScale(0.1);
 
-    // Define collision boundaries for shelves based on the image
+    // Add animation for moving
+    this.anims.create({
+        key: 'move',
+        frames: this.anims.generateFrameNumbers('playerMoving', { start: 0, end: 1 }),
+        frameRate: 10,
+        repeat: 1
+    });
+    this.anims.create({
+        key: 'moveLeft',
+        frames: this.anims.generateFrameNumbers('playerMovingLeft', { start: 3, end: 4 }),
+        frameRate: 10,
+        repeat: 1
+    });
+    
  
     // Define collision zones for the shelves (non-walkable areas)
     
@@ -83,21 +104,43 @@ function create() {
 
 
 function update() {
+    let isMoving = false;
+    let isLeft = false;
+
     // Player movement
+    this.player.setVelocity(0);
+
     if (this.cursors.left.isDown) {
         this.player.setVelocityX(-200);
+        isMoving = true;
+        isLeft = true;
     } else if (this.cursors.right.isDown) {
         this.player.setVelocityX(200);
-    } else {
-        this.player.setVelocityX(0);
+        isMoving = true;
+        isLeft = false;
     }
 
     if (this.cursors.up.isDown) {
         this.player.setVelocityY(-200);
+        isMoving = true;
     } else if (this.cursors.down.isDown) {
         this.player.setVelocityY(200);
+        isMoving = true;
+    }
+
+    // Change sprite based on movement
+    if (isMoving) {
+        if (!this.player.anims.isPlaying) {
+            this.player.play('move');
+            if (isLeft) {
+                this.player.play('moveLeft');
+            }
+        }
     } else {
-        this.player.setVelocityY(0);
+        if (this.player.anims.isPlaying) {
+            this.player.stop();
+            this.player.setTexture('playerIdle');
+        }
     }
 
     // Add spacebar input for interaction
@@ -129,6 +172,7 @@ function update() {
 
     
 }
+
 function interactWithCashier() {
     // Placeholder for Python function integration
     fetch('/api/translate', {
