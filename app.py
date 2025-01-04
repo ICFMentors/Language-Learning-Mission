@@ -47,12 +47,9 @@ class Player(db.Model, UserMixin):  # Updated to Player to match your table name
     level = db.Column(db.Integer, nullable=False)  # Default value for level (0 if not specified)
     experience = db.Column(db.Integer, default=0, nullable=False)  # Default value for experience (0 if not specified)
     current_level_id = db.Column(db.Integer, nullable=True)  # Foreign key for the current level (can be nullable)
-    achievement_id = db.Column(db.Integer, db.ForeignKey('achievement.achievement_id', ondelete='SET NULL'))  # Foreign key for achievements
+    current_player = db.Column(db.Integer, default=0, nullable=False)
     def get_id(self):
         return str(self.user_id)
-
-    # Relationships
-    achievement = db.relationship('Achievement', backref='players', passive_deletes=True)
 
     # Constraints (optional)
     __table_args__ = (
@@ -71,16 +68,6 @@ class RegistrationForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired(), Length(min=6)])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     age = IntegerField('Age', validators=[DataRequired()])
-
-class Achievement(db.Model):
-    __tablename__ = 'achievement'  # Table name matches the foreign key reference
-    achievement_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.String(255), nullable=True)
-
-    def __repr__(self):
-        return f'<Achievement {self.name}>'
-
 
 @login_manager.user_loader
 def load_user(player_id):
