@@ -48,6 +48,7 @@ class Player(db.Model, UserMixin):  # Updated to Player to match your table name
     experience = db.Column(db.Integer, default=0, nullable=False)  # Default value for experience (0 if not specified)
     current_level_id = db.Column(db.Integer, nullable=True)  # Foreign key for the current level (can be nullable)
     achievement_id = db.Column(db.Integer, db.ForeignKey('achievement.achievement_id', ondelete='SET NULL'))  # Foreign key for achievements
+    current_player = db.Column(db.Integer, default=0, nullable=False)
     def get_id(self):
         return str(self.user_id)
 
