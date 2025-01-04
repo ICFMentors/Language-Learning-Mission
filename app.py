@@ -99,9 +99,9 @@ def select_language():
     return render_template('select-language.html')
 
 # Route for the character selection page
-# @app.route('/create-character', methods=['GET', 'POST'])
-# @login_required
-# def create_character():
+@app.route('/create-character', methods=['GET', 'POST'])
+@login_required
+def create_character():
 #     if request.method == 'POST':
 #         selected_character = request.json.get('character')
 #         if not selected_character:
@@ -116,7 +116,7 @@ def select_language():
 #         else:
 #             return jsonify({"error": "Player not found!"}), 404
     
-#     return render_template('create-character.html')
+    return render_template('create-character.html')
 
 
 @app.route('/homepage')
