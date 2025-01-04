@@ -99,24 +99,24 @@ def select_language():
     return render_template('select-language.html')
 
 # Route for the character selection page
-@app.route('/create-character', methods=['GET', 'POST'])
-@login_required
-def create_character():
-    if request.method == 'POST':
-        selected_character = request.json.get('character')
-        if not selected_character:
-            return jsonify({"error": "No character selected!"}), 400
+# @app.route('/create-character', methods=['GET', 'POST'])
+# @login_required
+# def create_character():
+#     if request.method == 'POST':
+#         selected_character = request.json.get('character')
+#         if not selected_character:
+#             return jsonify({"error": "No character selected!"}), 400
         
-        # Update the player's current character in the database
-        current_player = Player.query.get(session['_user_id'])  # Use Flask-Login to get the logged-in player
-        if current_player:
-            current_player.current_level_id = selected_character  # Replace with the appropriate field for character
-            db.session.commit()
-            return jsonify({"message": f"Character {selected_character} selected successfully!"})
-        else:
-            return jsonify({"error": "Player not found!"}), 404
+#         # Update the player's current character in the database
+#         current_player = Player.query.get(session['_user_id'])  # Use Flask-Login to get the logged-in player
+#         if current_player:
+#             current_player.current_level_id = selected_character  # Replace with the appropriate field for character
+#             db.session.commit()
+#             return jsonify({"message": f"Character {selected_character} selected successfully!"})
+#         else:
+#             return jsonify({"error": "Player not found!"}), 404
     
-    return render_template('create-character.html')
+#     return render_template('create-character.html')
 
 
 @app.route('/homepage')
