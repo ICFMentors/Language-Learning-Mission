@@ -39,25 +39,4 @@
     </form>
   </div> 
 </body>
-<script>
-  function selectCharacter(characterId) {
-      fetch('/create-character', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ character: characterId })
-      })
-      .then(response => response.json())
-      .then(data => {
-          if (data.message) {
-              alert(data.message); // Show success message
-          } else if (data.error) {
-              alert(data.error); // Show error message
-          }
-      })
-      .catch(error => console.error('Error:', error));
-  }
-  </script>
-  
 </html>
