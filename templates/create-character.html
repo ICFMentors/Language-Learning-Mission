@@ -12,22 +12,18 @@
 <h1>Select Character</h1>
   <div class="character-selection">
     <!-- Empty Box 1 -->
-    <div class="character">
-      <img src="..\static\images\character1wbackground.png" height="200px" width="200 px">
+    <div class="character" onclick="selectCharacter('1')">
+      <img src="../static/images/character1wbackground.png" height="200px" width="200 px">
       <div class="character-name">Character 1</div>
     </div>
-
-    <!-- Empty Box 2 -->
-    <div class="character">
-      <img src="..\static\images\character2nobackground.png" height="200px" width="200 px">
+    <div class="character" onclick="selectCharacter('2')">
+      <img src="../static/images/character2nobackground.png" height="200px" width="200 px">
       <div class="character-name">Character 2</div>
     </div>
-
-    <!-- Empty Box 3 -->
-    <div class="character">
+    <div class="character" onclick="selectCharacter('3')">
       <img src="../static/images/character3wbackground.jpg" height="200px" width="200 px">
       <div class="character-name">Character 3</div>
-    </div>
+    </div>    
   </div>
 </form>
   <!-- Generate Character Button -->
@@ -42,6 +38,26 @@
       <label class="c-form__toggle" for="checkbox" data-title="Generate"></label>
     </form>
   </div> 
-
 </body>
+<script>
+  function selectCharacter(characterId) {
+      fetch('/create-character', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ character: characterId })
+      })
+      .then(response => response.json())
+      .then(data => {
+          if (data.message) {
+              alert(data.message); // Show success message
+          } else if (data.error) {
+              alert(data.error); // Show error message
+          }
+      })
+      .catch(error => console.error('Error:', error));
+  }
+  </script>
+  
 </html>

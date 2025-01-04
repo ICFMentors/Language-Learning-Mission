@@ -44,11 +44,10 @@ class Player(db.Model, UserMixin):  # Updated to Player to match your table name
     username = db.Column(db.String(50), unique=True, nullable=False)  # Username is unique and cannot be null
     password = db.Column(db.String(100), nullable=False)  # Password cannot be null
     age = db.Column(db.Integer, nullable=False)  # Age cannot be null
-    level = db.Column(db.Integer, default=0, nullable=False)  # Default value for level (0 if not specified)
+    level = db.Column(db.Integer, nullable=False)  # Default value for level (0 if not specified)
     experience = db.Column(db.Integer, default=0, nullable=False)  # Default value for experience (0 if not specified)
     current_level_id = db.Column(db.Integer, nullable=True)  # Foreign key for the current level (can be nullable)
     achievement_id = db.Column(db.Integer, db.ForeignKey('achievement.achievement_id', ondelete='SET NULL'))  # Foreign key for achievements
-
     def get_id(self):
         return str(self.user_id)
 
@@ -112,9 +111,26 @@ def login():
 def select_language():
     return render_template('select-language.html')
 
-@app.route('/create-character')
+# Route for the character selection page
+@app.route('/create-character', methods=['GET', 'POST'])
+@login_required
 def create_character():
+    if request.method == 'POST':
+        selected_character = request.json.get('character')
+        if not selected_character:
+            return jsonify({"error": "No character selected!"}), 400
+        
+        # Update the player's current character in the database
+        current_player = Player.query.get(session['_user_id'])  # Use Flask-Login to get the logged-in player
+        if current_player:
+            current_player.current_level_id = selected_character  # Replace with the appropriate field for character
+            db.session.commit()
+            return jsonify({"message": f"Character {selected_character} selected successfully!"})
+        else:
+            return jsonify({"error": "Player not found!"}), 404
+    
     return render_template('create-character.html')
+
 
 @app.route('/homepage')
 @login_required
@@ -194,5 +210,3 @@ try:
 except Exception as e:
     print(f"Error committing to database: {e}")
 
-if Player.level <= 0:
-    Player.level = 1  # Set a default level (or another positive number)

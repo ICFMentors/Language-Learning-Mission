@@ -48,9 +48,7 @@ CREATE TABLE Player (
     level INTEGER DEFAULT 1 CHECK(level > 0),
     experience INTEGER NOT NULL CHECK(experience >= 0),
     current_level_id INTEGER,
-    achievement_id INTEGER,
-    current_character INTEGER,
-    FOREIGN KEY (achievement_id) REFERENCES Achievement(achievement_id) ON DELETE SET NULL
+    current_player INTEGER
 );
 
 
