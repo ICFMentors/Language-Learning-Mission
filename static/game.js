@@ -170,7 +170,11 @@ function update() {
         }
     });
 
-    
+    let xpos = this.player.Position.x;
+    let ypos = this.player.Position.y;
+    let quadrant = getPlayerCoords(xpos, ypos);
+
+    console.log("The player is in quadrant ", quadrant);
 }
 
 function interactWithCashier() {
@@ -200,4 +204,23 @@ function getTranslation() {
         alert(`Cashier says: ${data.translated_text}`); // Display JSON response as an alert
     })
     .catch(err => console.error('Error interacting with cashier:', err));
+}
+
+
+
+
+function getPlayerCoords(xpos, ypos) {
+    if (xpos > (map.width/2)) {
+        if (ypos > (map.height/2)) {
+            return 1;
+        } else {
+            return 4;
+        }
+    }else if (xpos < (map.width/2)) {
+        if (ypos > (map.height/2)) {
+            return 2;
+        } else {
+            return 3;
+        }
+    }
 }
