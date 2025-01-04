@@ -43,7 +43,7 @@ function create() {
     map.setScale(scale);
 
     // Add player sprite
-    this.player = this.physics.add.sprite(config.width / 2, config.height / 2, 'player');
+    this.player = this.physics.add.sprite(config.width / 2, config.height / 2, 'playerIdle');
 
     // Scale down the character to look proportional in the store
     this.player.setScale(0.1);
@@ -132,6 +132,9 @@ function update() {
     if (isMoving) {
         if (!this.player.anims.isPlaying) {
             this.player.play('move');
+            console.log("The player coods are: ", this.player.x, ", " , this.player.y);
+            let playerCoords = getPlayerCoords(this.player.x, this.player.y, config.height, config.width);
+            console.log("The player is in zone: ", playerCoords);
             if (isLeft) {
                 this.player.play('moveLeft');
             }
@@ -170,12 +173,10 @@ function update() {
         }
     });
 
-    let xpos = this.player.Position.x;
-    let ypos = this.player.Position.y;
-    let quadrant = getPlayerCoords(xpos, ypos);
+    
 
-    console.log("The player is in quadrant ", quadrant);
-}
+    
+} 
 
 function interactWithCashier() {
     // Placeholder for Python function integration
@@ -209,18 +210,20 @@ function getTranslation() {
 
 
 
-function getPlayerCoords(xpos, ypos) {
-    if (xpos > (map.width/2)) {
-        if (ypos > (map.height/2)) {
-            return 1;
-        } else {
+function getPlayerCoords(xpos, ypos, height, width) {
+    
+    
+    if (xpos > (width/2)) {
+        if (ypos > (height/2)) {
             return 4;
-        }
-    }else if (xpos < (map.width/2)) {
-        if (ypos > (map.height/2)) {
-            return 2;
         } else {
+            return 1;
+        }
+    }else if (xpos < (width/2)) {
+        if (ypos > (height/2)) {
             return 3;
+        } else {
+            return 2;
         }
     }
 }
