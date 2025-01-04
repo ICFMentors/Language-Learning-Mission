@@ -34,54 +34,51 @@ function create() {
     const scale = Math.min(config.width / map.width, config.height / map.height);
     map.setScale(scale);
 
-    // Define collision boundaries for shelves based on the image
-    this.shelves = this.physics.add.staticGroup();
-
-    // Example: Define white tile areas where the player can walk
-    // Add precise collision zones for the colorful shelves
-    // Define collision boundaries for shelves and walkable areas based on the image
-    this.shelves = this.physics.add.staticGroup();
-
-    // Define collision zones for the shelves (non-walkable areas)
-    const shelfAreas = [
-        { x: 150, y: 150, width: 300, height: 100 }, // Top-left shelf
-        { x: 450, y: 150, width: 300, height: 100 }, // Top-center shelf
-        { x: 750, y: 150, width: 300, height: 100 }, // Top-right shelf
-        { x: 150, y: 400, width: 300, height: 200 }, // Left-side shelf
-        { x: 750, y: 400, width: 300, height: 200 }, // Right-side shelf
-        { x: 450, y: 650, width: 600, height: 100 }, // Bottom-center shelf
-    ];
-
-    for (const shelf of shelfAreas) {
-        const collider = this.add.rectangle(shelf.x, shelf.y, shelf.width, shelf.height, 0x000000, 0);
-        this.physics.add.existing(collider);
-        collider.body.setImmovable(true);
-        this.shelves.add(collider);
-    }
-
     // Add player sprite
     this.player = this.physics.add.sprite(config.width / 2, config.height / 2, 'player');
 
     // Scale down the character to look proportional in the store
     this.player.setScale(0.2);
+
+    // Define collision boundaries for shelves based on the image
+ 
+    // Define collision zones for the shelves (non-walkable areas)
+    
+    const boundaries = [
+        { x: 0, y: (map.height/2), width: config.width, height: 1 },  // Top boundary
+        { x: 0, y: -(map.height/2), width: config.width, height: 1 }, // Bottom boundary
+        { x: -(config.width / 2), y: 0, width: 1, height: config.height },  // Left boundary
+        { x: (config.width / 2), y: 0, width: 1, height: config.height}  // Right boundary
+    ];
+    
+
+    this.boundaryGroup = this.physics.add.staticGroup();
+
+    for (const boundary of boundaries) {
+        const rect = this.add.rectangle(boundary.x, boundary.y, boundary.width, boundary.height, 0x000000, 0);
+        this.physics.add.existing(rect);
+        rect.body.setImmovable(true);
+        this.boundaryGroup.add(rect);
+    }
+
+    // Add collision for the player against boundaries
+    this.physics.add.collider(this.boundaryGroup, this.player);
+
+    
     // cannot leave world
     this.player.setCollideWorldBounds(true);
-    this.physics.add.collider(this.player, this.shelves);
+    this.physics.add.collider(this.player, this.boundaryGroup);
 
     // Add keyboard controls
     this.cursors = this.input.keyboard.createCursorKeys();
 
-    // Add cashier interaction
+    // Add cashier 
     this.cashier = this.physics.add.staticSprite(config.width / 2, config.height / 10, 'npc'); // Position for cashier table
     this.cashier.setScale(0.15);
     this.physics.add.existing(this.cashier);
 
-    // Add spacebar input for interaction
-    this.spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+    
 
-    this.physics.add.overlap(this.player, this.cashier, () => {
-        this.canInteract = true;
-    }, null, this);
 }
 
 
@@ -107,6 +104,10 @@ function update() {
     this.spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     this.canInteract = false;
 
+    if (this.spaceKey.isDown) {
+        getTranslation();
+    }
+
     this.physics.add.overlap(this.player, this.cashier, () => {
         this.canInteract = true;
         const interactPrompt = document.getElementById('interact-prompt');
@@ -125,21 +126,12 @@ function update() {
             interactPrompt.style.display = 'none';
         }
     });
+
+    
 }
-
 function interactWithCashier() {
-    // Display dialogue box for interaction
-    const dialogueBox = document.getElementById('dialogue-box');
-    dialogueBox.style.display = 'block';
-    dialogueBox.textContent = "Cashier: Welcome! How can I help you today?";
-
-    setTimeout(() => {
-        dialogueBox.style.display = 'none';
-    }, 3000); // Hide dialogue after 3 seconds
-
     // Placeholder for Python function integration
-    fetch('/interact', {
-        method: 'POST',
+    fetch('/api/translate', {
         headers: {
             'Content-Type': 'application/json'
         },
@@ -147,9 +139,21 @@ function interactWithCashier() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Cashier says:', data.message);
-        // Update dialogue box with Python response
-        dialogueBox.textContent = data.message;
+        alert(`Cashier says: ${data.message}`); // Display JSON response as an alert
+    })
+    .catch(err => console.error('Error interacting with cashier:', err));
+}
+
+function getTranslation() {
+    fetch('/api/translate?text=' + "hello" )
+        //headers: {
+        //    'Content-Type': 'application/json'
+        //},
+        //body: JSON.stringify({ action: 'interact_with_cashier' })
+    
+    .then(response => response.json())
+    .then(data => {
+        alert(`Cashier says: ${data.translated_text}`); // Display JSON response as an alert
     })
     .catch(err => console.error('Error interacting with cashier:', err));
 }

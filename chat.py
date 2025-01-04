@@ -14,7 +14,7 @@ client = openai #OpenAI(api_key=openAI_api_key)
 
 
 # Step 1: Function to translate text
-def translate_text(text, source_language="Arabic", target_language="English"):
+def translate_text(text, source_language="English", target_language="Arabic", age=12):
     """
     Translate text using OpenAI ChatCompletion API.
     
@@ -32,7 +32,8 @@ def translate_text(text, source_language="Arabic", target_language="English"):
         # API call using ChatCompletion
         response = client.ChatCompletion.create(model="gpt-4o-mini",  # Use GPT-4 or another available model
         messages=[
-            {"role": "system", "content": f"You are a professional translator from {source_language} to {target_language}"},
+            {"role": "system", "content": f"You are an NPC in a language learning game who translates from {source_language} to {target_language}. talk to the user as if they are {age} years old. give the player advice on their grammar."},
+            {"role": "assistant", "content": f"Hello traveller! How can I help you?"},
             {"role": "user", "content": f"Translate the following from {source_language} to {target_language}: {text}"}
             #{"role": "user", "content": f"Translate the following English text to Spanish: Hi, I would like to order a blender"}
         ],  # Closing the list of messages

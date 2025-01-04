@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, IntegerField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
+import chat
 
 import sqlite3
 import sys
@@ -158,6 +159,26 @@ def signup():
 @app.route('/game')
 def playGame():
     return render_template('game.html')
+@app.route('/api/translate')
+def interact():
+    #data = request.get_json()
+    original_text=request.args.get('text')
+    print(original_text)
+    return jsonify({
+            'translated_text': chat.translate_text(original_text)
+        })
+    
+    # Check the action from the request
+    #if data.get('action') == 'interact_with_cashier':
+        # Respond with a message from the cashier
+        #return jsonify({
+        #    'message': 'Hello! Thank you for stopping by. How can I assist you today?'
+        #})
+    # else:
+    #     # Default response for unknown actions
+    #     return jsonify({
+    #         'message': 'I am not sure what you mean.'
+    #     }), 400
 
 
 
