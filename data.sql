@@ -46,9 +46,10 @@ CREATE TABLE Player (
     password TEXT NOT NULL,
     age INTEGER NOT NULL CHECK(age >= 0),
     level INTEGER DEFAULT 1 CHECK(level > 0),
-    experience INTEGER NOT NULL CHECK(experience >= 0),
     current_level_id INTEGER,
-    current_player INTEGER
+    current_player INTEGER,
+    lang INTEGER,
+    learning_lang INTEGER
 );
 
 

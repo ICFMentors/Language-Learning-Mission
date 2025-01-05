@@ -45,9 +45,10 @@ class Player(db.Model, UserMixin):  # Updated to Player to match your table name
     password = db.Column(db.String(100), nullable=False)  # Password cannot be null
     age = db.Column(db.Integer, nullable=False)  # Age cannot be null
     level = db.Column(db.Integer, nullable=False)  # Default value for level (0 if not specified)
-    experience = db.Column(db.Integer, default=0, nullable=False)  # Default value for experience (0 if not specified)
     current_level_id = db.Column(db.Integer, nullable=True)  # Foreign key for the current level (can be nullable)
     current_player = db.Column(db.Integer, default=0, nullable=False)
+    lang = db.Column(db.String(50), nullable=False)
+    learning_lang = db.Column(db.String(50), nullable=False)
     def get_id(self):
         return str(self.user_id)
 
@@ -55,7 +56,6 @@ class Player(db.Model, UserMixin):  # Updated to Player to match your table name
     __table_args__ = (
         db.CheckConstraint('age >= 0', name='check_age_non_negative'),  # Ensures age is non-negative
         db.CheckConstraint('level > 0', name='check_level_positive'),  # Ensures level is positive
-        db.CheckConstraint('experience >= 0', name='check_experience_non_negative')  # Ensures experience is non-negative
     )
 
     def __repr__(self):
@@ -142,7 +142,8 @@ def signup():
             password=generate_password_hash(form.password.data),  # Hash password
             age=form.age.data,
             level=1,  # Default value for level
-            experience=0  # Default value for experience
+            lang=0,
+            learning_lang=0
         )
 
         # Add the new player to the database and commit the changes
@@ -157,6 +158,26 @@ def signup():
         return redirect(url_for('homepage'))  # Redirect to homepage after sign-up
 
     return render_template('signup.html', form=form)
+
+@app.route('/api/save-languages', methods=['POST'])
+@login_required
+def save_languages():
+    data = request.get_json()
+    learning_in = data['learningIn']
+    learning = data['learning']
+
+    if not learning_in or not learning:
+        return jsonify({"success": False, "error": "Both languages must be selected!"}), 400
+
+    # Update the current user's language preferences in the database
+    current_player = Player.query.get(session['_user_id'])
+    if current_player:
+        current_player.lang = learning_in
+        current_player.learning_lang = learning
+        db.session.commit()
+        return jsonify({"success": True})
+    else:
+        return jsonify({"success": False, "error": "Player not found!"}), 404
 
 
 @app.route('/game')

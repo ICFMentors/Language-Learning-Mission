@@ -21,12 +21,12 @@
   
   <h2>Language You Are Learning In</h2>
   <div class="language-container">
-    <button class="language-button" onclick="selectLanguage('English', 'learning-in')">English</button>
-    <button class="language-button" disabled onclick="selectLanguage('Spanish', 'learning-in')">Spanish</button>
-    <button class="language-button" disabled onclick="selectLanguage('French', 'learning-in')">French</button>
-    <button class="language-button" disabled onclick="selectLanguage('German', 'learning-in')">German</button>
-    <button class="language-button" disabled onclick="selectLanguage('Chinese', 'learning-in')">Chinese</button>
-    <button class="language-button" disabled onclick="selectLanguage('Arabic', 'learning-in')">Arabic</button>
+    <button id="learning_lang_1" class="language-button" onclick="selectLanguage('English', 'learning-in')">English</button>
+    <button id="learning_lang_2" class="language-button" disabled onclick="selectLanguage('Spanish', 'learning-in')">Spanish</button>
+    <button id="learning_lang_3" class="language-button" disabled onclick="selectLanguage('French', 'learning-in')">French</button>
+    <button id="learning_lang_4" class="language-button" disabled onclick="selectLanguage('German', 'learning-in')">German</button>
+    <button id="learning_lang_5" class="language-button" disabled onclick="selectLanguage('Chinese', 'learning-in')">Chinese</button>
+    <button id="learning_lang_6" class="language-button" disabled onclick="selectLanguage('Arabic', 'learning-in')">Arabic</button>
   </div>
   
   
@@ -35,22 +35,55 @@
 
   <h2>Language You Are Learning</h2>
   <div class="language-container">
-    <button class="language-button" disabled onclick="selectLanguage('English', 'learning')">English</button>
-    <button class="language-button" disabled onclick="selectLanguage('Spanish', 'learning')">Spanish</button>
-    <button class="language-button" disabled onclick="selectLanguage('French', 'learning')">French</button>
-    <button class="language-button" disabled onclick="selectLanguage('German', 'learning')">German</button>
-    <button class="language-button" disabled onclick="selectLanguage('Chinese', 'learning')">Chinese</button>
-    <button class="language-button" onclick="selectLanguage('Arabic', 'learning')">Arabic</button>
+    <button id="lang_1" class="language-button" disabled onclick="selectLanguage('English', 'learning')">English</button>
+    <button id="lang_2" class="language-button" disabled onclick="selectLanguage('Spanish', 'learning')">Spanish</button>
+    <button id="lang_3" class="language-button" disabled onclick="selectLanguage('French', 'learning')">French</button>
+    <button id="lang_4" class="language-button" disabled onclick="selectLanguage('German', 'learning')">German</button>
+    <button id="lang_5" class="language-button" disabled onclick="selectLanguage('Chinese', 'learning')">Chinese</button>
+    <button id="lang_6" class="language-button" onclick="selectLanguage('Arabic', 'learning')">Arabic</button>
   </div>
+
+  <!--<input type="hidden" id="learningIn" name="learningIn" value="">
+  <input type="hidden" id="learning" name="learning" value="">-->
+
+
+  <button class="pixel2" onclick="saveLanguages()">Next</button>
 </form>
   <script>
-    function selectLanguage(language, type) {
-      const message = type === 'learning-in' 
-        ? `You are learning in: ${language}` 
-        : `You are learning: ${language}`;
-      alert(message);
-      // Add logic here for navigation or storing preferences
+  let selectedLang = {
+    learningIn: null,
+    learning: null
+  };
+
+  function selectLanguage(language, type) {
+    if (type === 'learning-in') {
+      selectedLang.learningIn = language;
+    } else if (type === 'learning') {
+      selectedLang.learning = language;
     }
-  </script>
+
+    //document.getElementById('learningIn').value = selectedLang.learningIn;
+    //document.getElementById('learning').value = selectedLang.learning;
+    console.log(`You selected: ${language} for ${type}`);
+  }
+
+  function saveLanguages() {
+    fetch('/api/save-languages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(selectedLang)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert('Languages saved successfully!');
+        window.location.href = '/select-level'; // Redirect to the next step
+      } else {
+        alert('Error saving languages: ' + data.error);
+      }
+    })
+    .catch(error => console.error('Error:', error));
+  }
+</script>
 </body>
 </html>
