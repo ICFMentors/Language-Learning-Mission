@@ -505,7 +505,7 @@ body {
 }
 
       #translate-box{
-        position: absolute;
+      position: absolute;
       font-family: 'Press Start 2P', 'Xolonium', monospace;
       font-size: 23px;
       background-color: rgb(243, 183, 134);

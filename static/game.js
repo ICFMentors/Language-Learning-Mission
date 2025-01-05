@@ -236,6 +236,8 @@ function getTranslation() {
             console.error('Error interacting with cashier:', err);
             document.getElementById('interact-prompt').innerText = 'An error occurred. Please try again.';
         });
+
+    document.getElementById('translate-box').style.display = 'none';
 }
 
 
