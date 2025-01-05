@@ -16,6 +16,18 @@ const config = {
     }
 };
 
+const quadrantInputs = {
+    1:"apple",
+    2:"banana",
+    3:"orange",
+    4:"grapes",
+    5:"mango",
+    6:"kiwi",
+    7:"strawberry",
+    8:"pineapple",
+    9:"watermelon"
+}
+
 const game = new Phaser.Game(config);
 
 function preload() {
@@ -98,7 +110,7 @@ function create() {
     this.cashier.setScale(0.15);
     this.physics.add.existing(this.cashier);
 
-    
+    let playerCoords = getPlayerCoords(this.player.x, this.player.y, config.height, config.width);    
 
 }
 
@@ -133,7 +145,7 @@ function update() {
         if (!this.player.anims.isPlaying) {
             this.player.play('move');
             console.log("The player coods are: ", this.player.x, ", " , this.player.y);
-            let playerCoords = getPlayerCoords(this.player.x, this.player.y, config.height, config.width);
+            playerCoords = getPlayerCoords(this.player.x, this.player.y, config.height, config.width);
             console.log("The player is in zone: ", playerCoords);
             if (isLeft) {
                 this.player.play('moveLeft');
@@ -151,7 +163,9 @@ function update() {
     this.canInteract = false;
 
     if (this.spaceKey.isDown) {
-        getTranslation();
+        getTranslation(quadrantInputs[playerCoords]);
+        this.spaceKey.isDown = false;
+        
     }
 
     this.physics.add.overlap(this.player, this.cashier, () => {
@@ -174,8 +188,6 @@ function update() {
     });
 
     
-
-    
 } 
 
 function interactWithCashier() {
@@ -188,13 +200,13 @@ function interactWithCashier() {
     })
     .then(response => response.json())
     .then(data => {
-        alert(`Cashier says: ${data.message}`); // Display JSON response as an alert
+        return (`Cashier says: ${data.message}`); // Display JSON response as an alert
     })
     .catch(err => console.error('Error interacting with cashier:', err));
 }
 
-function getTranslation() {
-    fetch('/api/translate?text=' + "hello" )
+function getTranslation(text) {
+    fetch('/api/translate?text=' + text )
         //headers: {
         //    'Content-Type': 'application/json'
         //},
@@ -202,7 +214,7 @@ function getTranslation() {
     
     .then(response => response.json())
     .then(data => {
-        alert(`Cashier says: ${data.translated_text}`); // Display JSON response as an alert
+        document.getElementById('interact-prompt').innerText = (`Cashier says: ${data.translated_text}`); // Display JSON response as an alert
     })
     .catch(err => console.error('Error interacting with cashier:', err));
 }
@@ -213,17 +225,29 @@ function getTranslation() {
 function getPlayerCoords(xpos, ypos, height, width) {
     
     
-    if (xpos > (width/2)) {
-        if (ypos > (height/2)) {
-            return 4;
-        } else {
-            return 1;
+    if (xpos < (width/3)) {
+        if (ypos < (height/3)) {
+            return "1";
+        } else if (ypos < (height*2/3) && ypos > (height/3)) {
+            return "4";
+        }else {
+            return "7";
         }
-    }else if (xpos < (width/2)) {
-        if (ypos > (height/2)) {
-            return 3;
-        } else {
-            return 2;
+    }else if (xpos > (width/3) && xpos < (width*2/3)) {
+        if (ypos < (height/3)) {
+            return "2";
+        } else if (ypos < (height*2/3) && ypos > (height/3)) {
+            return "5";
+        }else {
+            return "8";
+        }
+    }else {
+        if (ypos < (height/3)) {
+            return "3";
+        } else if (ypos < (height*2/3) && ypos > (height/3)) {
+            return "6";
+        }else {
+            return "9";
         }
     }
 }
