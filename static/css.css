@@ -504,4 +504,20 @@ body {
       text-align: center
 }
 
-        
+      #translate-box{
+        position: absolute;
+      font-family: 'Press Start 2P', 'Xolonium', monospace;
+      font-size: 23px;
+      background-color: rgb(243, 183, 134);
+      margin: 10px;
+      border: 5px solid #825204;
+      color: black;
+      padding: 5px 10px;
+      border-radius: 5px;
+      z-index: 10;
+      left: 50%;
+      top: 10%; /* Adjust this value to move it slightly lower */
+      transform: translateX(-50%);
+      text-align: center
+}
+      
