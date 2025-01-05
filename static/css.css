@@ -485,7 +485,7 @@ body {
       }
 
 
-      
+      /*
       #interact-prompt {
       position: absolute;
       font-family: 'Press Start 2P', 'Xolonium', monospace;
@@ -499,10 +499,31 @@ body {
       display: none;
       z-index: 10;
       left: 50%;
-      top: 10%; /* Adjust this value to move it slightly lower */
+      bottom: 10%;
       transform: translateX(-50%);
       text-align: center
 }
+*/
+
+#interact-prompt {
+  position: absolute;
+  bottom: 10px; /* Distance from the bottom */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Maintain centering */
+  width: 400px; /* Fixed width for the box */
+  max-width: 90%; /* Prevent it from overflowing the screen */
+  height: auto; /* Adjust height based on content */
+  font-family: 'Press Start 2P', 'Xolonium', monospace;
+  font-size: 23px;
+  background-color: rgb(243, 183, 134);
+  border: 5px solid #825204;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 5px;
+  z-index: 10;
+  text-align: center;
+}
+
 
       #translate-box{
       position: absolute;
