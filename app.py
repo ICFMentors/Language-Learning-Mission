@@ -162,6 +162,9 @@ def signup():
 @app.route('/game')
 def playGame():
     return render_template('game.html')
+@app.route('/town')
+def playTown():
+    return render_template('town.html')
 @app.route('/api/translate')
 def interact():
     #data = request.get_json()
