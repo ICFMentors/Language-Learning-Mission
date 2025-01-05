@@ -75,32 +75,32 @@ function create() {
     });
     
  
-    // Define collision zones for the shelves (non-walkable areas)
+    // Define collision zones for the walls (non-walkable areas)
     
-    const boundaries = [
-        { x: 0, y: (map.height/2), width: config.width, height: 1 },  // Top boundary
-        { x: 0, y: -(map.height/2), width: config.width, height: 1 }, // Bottom boundary
-        { x: -(config.width / 2), y: 0, width: 1, height: config.height },  // Left boundary
-        { x: (config.width / 2), y: 0, width: 1, height: config.height}  // Right boundary
-    ];
+    //const boundaries = [
+    //    { x:  config.width/2, y: 0, width: config.width, height: 10 },  // Top boundary
+    //    { x: config.width/2 , y: (config.height), width: config.width, height: 10 }, // Bottom boundary
+    //    { x: 0, y: 0, width: 1, height: config.height },  // Left boundary
+    //    { x: config.width, y: 0, width: 1, height: config.height}  // Right boundary
+    //];
     
 
-    this.boundaryGroup = this.physics.add.staticGroup();
+    //this.boundaryGroup = this.physics.add.staticGroup();
 
-    for (const boundary of boundaries) {
-        const rect = this.add.rectangle(boundary.x, boundary.y, boundary.width, boundary.height, 0x000000, 0);
-        this.physics.add.existing(rect);
-        rect.body.setImmovable(true);
-        this.boundaryGroup.add(rect);
-    }
+    //for (const boundary of boundaries) {
+    //    const rect = this.add.rectangle(boundary.x, boundary.y, boundary.width, boundary.height, 0x000000, 0);
+    //    this.physics.add.existing(rect);
+    //    rect.body.setImmovable(true);
+    //    this.boundaryGroup.add(rect);
+    //}
 
     // Add collision for the player against boundaries
-    this.physics.add.collider(this.boundaryGroup, this.player);
+    //this.physics.add.collider(this.boundaryGroup, this.player);
 
     
     // cannot leave world
-    this.player.setCollideWorldBounds(true);
-    this.physics.add.collider(this.player, this.boundaryGroup);
+    //this.player.setCollideWorldBounds(true);
+    //this.physics.add.collider(this.player, this.boundaryGroup);
 
     // Add keyboard controls
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -110,7 +110,7 @@ function create() {
     this.cashier.setScale(0.15);
     this.physics.add.existing(this.cashier);
 
-    let playerCoords = getPlayerCoords(this.player.x, this.player.y, config.height, config.width);    
+    
 
 }
 
