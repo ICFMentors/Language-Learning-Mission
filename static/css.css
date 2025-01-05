@@ -496,6 +496,10 @@ body {
       border-radius: 5px;
       display: none;
       z-index: 10;
+      left: 50%;
+      top: 60%; /* Adjust this value to move it slightly lower */
+      transform: translate(-50%, -50%);
+      text-align: center
 }
 
         
