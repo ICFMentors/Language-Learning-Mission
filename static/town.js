@@ -29,7 +29,7 @@ function preload() {
         frameWidth: 1024,
         frameHeight: 1024
     });
-    this.load.image('map', '../static/images/town.webp');
+    this.load.image('map', '../static/images/TownScene.webp');
 }
 
 function create() {
