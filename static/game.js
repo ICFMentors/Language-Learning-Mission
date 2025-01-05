@@ -205,7 +205,7 @@ function interactWithCashier() {
     .catch(err => console.error('Error interacting with cashier:', err));
 }
 
-function getTranslation(text) {
+/*function getTranslation(text) {
     fetch('/api/translate?text=' + text )
         //headers: {
         //    'Content-Type': 'application/json'
@@ -217,8 +217,26 @@ function getTranslation(text) {
         document.getElementById('interact-prompt').innerText = (`Cashier says: ${data.translated_text}`); // Display JSON response as an alert
     })
     .catch(err => console.error('Error interacting with cashier:', err));
-}
+}*/
 
+function getTranslation() {
+    const userInput = document.getElementById('user-input').value;
+
+    if (!userInput) {
+        document.getElementById('interact-prompt').innerText = 'Please enter text to translate.';
+        return;
+    }
+
+    fetch('/api/translate?text=' + encodeURIComponent(userInput))
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('interact-prompt').innerText = `Cashier says: ${data.translated_text}`;
+        })
+        .catch(err => {
+            console.error('Error interacting with cashier:', err);
+            document.getElementById('interact-prompt').innerText = 'An error occurred. Please try again.';
+        });
+}
 
 
 
