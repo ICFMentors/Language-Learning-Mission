@@ -16,12 +16,12 @@
   </style>
 </head>
 <body>
-  <form>
+  <form method="POST">
   <h1>Select Your Language Preferences</h1>
   
   <h2>Language You Are Learning In</h2>
   <div class="language-container">
-    <button id="learning_lang_1" class="language-button" onclick="selectLanguage('English', 'learning-in')">English</button>
+    <div id="learningIn" name="learningIn" class="language-button" onclick="selectLanguage('English', 'learning-in')">English</div>
     <button id="learning_lang_2" class="language-button" disabled onclick="selectLanguage('Spanish', 'learning-in')">Spanish</button>
     <button id="learning_lang_3" class="language-button" disabled onclick="selectLanguage('French', 'learning-in')">French</button>
     <button id="learning_lang_4" class="language-button" disabled onclick="selectLanguage('German', 'learning-in')">German</button>
@@ -35,55 +35,41 @@
 
   <h2>Language You Are Learning</h2>
   <div class="language-container">
-    <button id="lang_1" class="language-button" disabled onclick="selectLanguage('English', 'learning')">English</button>
+    <div id="lang_1" class="language-button" disabled onclick="selectLanguage('English', 'learning')">English</div>
     <button id="lang_2" class="language-button" disabled onclick="selectLanguage('Spanish', 'learning')">Spanish</button>
     <button id="lang_3" class="language-button" disabled onclick="selectLanguage('French', 'learning')">French</button>
     <button id="lang_4" class="language-button" disabled onclick="selectLanguage('German', 'learning')">German</button>
     <button id="lang_5" class="language-button" disabled onclick="selectLanguage('Chinese', 'learning')">Chinese</button>
-    <button id="lang_6" class="language-button" onclick="selectLanguage('Arabic', 'learning')">Arabic</button>
+    <div id="learning" name="learning" class="language-button" onclick="selectLanguage('Arabic', 'learning')">Arabic</div>
   </div>
 
-  <!--<input type="hidden" id="learningIn" name="learningIn" value="">
-  <input type="hidden" id="learning" name="learning" value="">-->
+  <input type="hidden" id="learningIn" name="learningIn" value="">
+  <input type="hidden" id="learning" name="learning" value="">
 
 
-  <button class="pixel2" onclick="saveLanguages()">Next</button>
+  <button type="submit" class="pixel2" >Next</button>
 </form>
   <script>
-  let selectedLang = {
-    learningIn: null,
-    learning: null
-  };
+  
 
   function selectLanguage(language, type) {
-    if (type === 'learning-in') {
-      selectedLang.learningIn = language;
-    } else if (type === 'learning') {
-      selectedLang.learning = language;
+   
+    if (type === 'learning') {
+      //document.getElementById('learning') = language;
+      document.forms[0].learning.value = language;
+    } else {
+      document.forms[0].learningIn.value = language;    
     }
-
-    //document.getElementById('learningIn').value = selectedLang.learningIn;
-    //document.getElementById('learning').value = selectedLang.learning;
+    
     console.log(`You selected: ${language} for ${type}`);
+
   }
 
-  function saveLanguages() {
-    fetch('/api/save-languages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(selectedLang)
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        alert('Languages saved successfully!');
-        window.location.href = '/select-level'; // Redirect to the next step
-      } else {
-        alert('Error saving languages: ' + data.error);
-      }
-    })
-    .catch(error => console.error('Error:', error));
-  }
+  
+
+
+
+  
 </script>
 </body>
 </html>

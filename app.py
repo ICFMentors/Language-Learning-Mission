@@ -94,9 +94,29 @@ def login():
     
     return render_template('login.html')
 
-@app.route('/select-language')
+@app.route('/select-language', methods=['GET', 'POST'])
 def select_language():
-    return render_template('select-language.html')
+    if(request.method == 'GET'): 
+        return render_template('select-language.html')  
+    else:
+            
+        playerId = session["_user_id"]
+        player = Player.query.filter_by(user_id=playerId).first()
+        #pass
+        if player:
+            player.lang = request.form['learning']
+            player.learning_lang = request.form['learningIn']
+            print(player.lang)
+            print(player.learning_lang)   
+            try:
+                db.session.commit()
+                return redirect('/select-level')
+            except Exception as e:
+                 error_message = 'There was an issue updating the player information. Please try again later.'
+                 return render_template('select-language.html', player=[player], error_message=error_message)
+        # else:
+            # error_message = 'player not found.'
+           # return render_template('select-level.html')
 
 # Route for the character selection page
 @app.route('/create-character', methods=['GET', 'POST'])
@@ -159,25 +179,25 @@ def signup():
 
     return render_template('signup.html', form=form)
 
-@app.route('/api/save-languages', methods=['POST'])
-@login_required
-def save_languages():
-    data = request.get_json()
-    learning_in = data['learningIn']
-    learning = data['learning']
+# @app.route('/api/save-languages', methods=['POST'])
+# @login_required
+# def save_languages():
+#     data = request.get_json()
+#     learning_in = data['learningIn']
+#     learning = data['learning']
 
-    if not learning_in or not learning:
-        return jsonify({"success": False, "error": "Both languages must be selected!"}), 400
+#     if not learning_in or not learning:
+#         return jsonify({"success": False, "error": "Both languages must be selected!"}), 400
 
-    # Update the current user's language preferences in the database
-    current_player = Player.query.get(session['_user_id'])
-    if current_player:
-        current_player.lang = learning_in
-        current_player.learning_lang = learning
-        db.session.commit()
-        return jsonify({"success": True})
-    else:
-        return jsonify({"success": False, "error": "Player not found!"}), 404
+#     # Update the current user's language preferences in the database
+#     current_player = Player.query.get(session['_user_id'])
+#     if current_player:
+#         current_player.lang = learning_in
+#         current_player.learning_lang = learning
+#         db.session.commit()
+#         return jsonify({"success": True})
+#     else:
+#         return jsonify({"success": False, "error": "Player not found!"}), 404
 
 
 @app.route('/game')
