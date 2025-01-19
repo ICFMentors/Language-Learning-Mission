@@ -211,8 +211,10 @@ def interact():
     #data = request.get_json()
     original_text=request.args.get('text')
     print(original_text)
+    playerId = session["_user_id"]
+    player = Player.query.filter_by(user_id=playerId).first()
     return jsonify({
-            'translated_text': chat.translate_text(original_text)
+            'translated_text': chat.translate_text(original_text, player.learning_lang, player.lang, player.age)
         })
     
     # Check the action from the request

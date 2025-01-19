@@ -32,7 +32,7 @@ def translate_text(text, source_language="English", target_language="Arabic", ag
         # API call using ChatCompletion
         response = client.ChatCompletion.create(model="gpt-4o-mini",  # Use GPT-4 or another available model
         messages=[
-            {"role": "system", "content": f"You are an NPC in a language learning game who translates from {source_language} to {target_language}. talk to the user as if they are {age} years old. give the player advice on their grammar."},
+            {"role": "system", "content": f"You are an NPC in a language learning game who translates from {source_language} to {target_language}. talk to the user in their source language and talk to them as if they are {age} years old. give the player advice on their grammar."},
             {"role": "assistant", "content": f"Hello traveller! How can I help you?"},
             {"role": "user", "content": f"Translate the following from {source_language} to {target_language}: {text}"}
             #{"role": "user", "content": f"Translate the following English text to Spanish: Hi, I would like to order a blender"}
