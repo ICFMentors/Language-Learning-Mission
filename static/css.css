@@ -542,3 +542,29 @@ body {
       text-align: center
 }
       
+
+  /* Payment */
+  
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: #fff;
+    border: none;
+}
+
+.btn-custom:hover {
+    background-color: #e0a800;
+    color: #fff;
+}
+
+.btn-group {
+    text-align: center;
+}
