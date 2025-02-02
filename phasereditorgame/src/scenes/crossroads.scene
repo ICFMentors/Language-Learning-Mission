@@ -1,0 +1,76 @@
+{
+    "id": "2c6e4fab-44a8-4d54-a15b-f0f1f40bc22f",
+    "sceneType": "SCENE",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "importFileExtension": true,
+        "preloadPackFiles": [],
+        "createMethodName": "editorCreate",
+        "sceneKey": "home",
+        "borderWidth": 572,
+        "borderHeight": 574
+    },
+    "displayList": [
+        {
+            "type": "Image",
+            "id": "b9b00561-490e-48f7-abaf-f23b1f4cb553",
+            "label": "crossroads",
+            "texture": {
+                "key": "Crossroads"
+            },
+            "originX": 0,
+            "originY": 0
+        },
+        {
+            "type": "Sprite",
+            "id": "fa8892db-50d7-44af-9be6-0e88691eda19",
+            "label": "player",
+            "scope": "CLASS",
+            "texture": {
+                "key": "characterIdle"
+            },
+            "x": 427,
+            "y": 503,
+            "scaleX": 0.3978902019419553,
+            "scaleY": 0.3978902019419553,
+            "animationPlayMethod": 1,
+            "animationKey": "run",
+            "animationFrameRate": 1,
+            "animationDelay": 10,
+            "animationRepeat": -1
+        }
+    ],
+    "plainObjects": [
+        {
+            "id": "f99e7280-9457-49ac-b345-a0c98171f8c3",
+            "type": "Keyboard.Key",
+            "label": "upKey",
+            "keyCode": "UP"
+        },
+        {
+            "id": "31795212-33fe-480c-9dc6-df402ede3c5e",
+            "type": "Keyboard.Key",
+            "label": "downKey",
+            "keyCode": "DOWN"
+        },
+        {
+            "id": "55543fc0-8fc5-4e35-8ed4-392428fec981",
+            "type": "Keyboard.Key",
+            "label": "leftKey",
+            "keyCode": "LEFT"
+        },
+        {
+            "id": "7eea3d80-a7c7-4c03-8e5d-cdd257ff5744",
+            "type": "Keyboard.Key",
+            "label": "rightKey",
+            "keyCode": "RIGHT"
+        }
+    ],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    }
+}

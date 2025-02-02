@@ -1,0 +1,26 @@
+{
+  "id": "e9a76c32-1b58-4c46-bb54-22eeed4e4fb0",
+  "settings": {
+    "compilerOutputLanguage": "JAVA_SCRIPT",
+    "javaScriptInitFieldsInConstructor": false,
+    "javaScriptGenerateFieldDeclarations": true,
+    "exportClass": true,
+    "autoImport": true,
+    "importFileExtension": true,
+    "createMethodName": "editorCreate",
+    "compilerInsertSpaces": false,
+    "compilerTabSize": 4,
+    "borderWidth": 572,
+    "borderHeight": 574,
+    "borderX": 0,
+    "borderY": 0,
+    "sceneKey": "house"
+  },
+  "sceneType": "SCENE",
+  "displayList": [],
+  "meta": {
+    "app": "Phaser Editor 2D - Scene Editor",
+    "url": "https://phasereditor2d.com",
+    "contentType": "phasereditor2d.core.scene.SceneContentType"
+  }
+}

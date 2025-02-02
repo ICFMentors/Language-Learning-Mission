@@ -1,0 +1,144 @@
+{
+    "section1": {
+        "files": [
+            {
+                "url": "assets/animations.json",
+                "type": "animation",
+                "key": "animations"
+            },
+            {
+                "url": "assets/background.jpg",
+                "type": "image",
+                "key": "background"
+            },
+            {
+                "url": "assets/cashierNoBackground.png",
+                "type": "image",
+                "key": "cashierNoBackground"
+            },
+            {
+                "url": "assets/character100.png",
+                "type": "image",
+                "key": "character100"
+            },
+            {
+                "url": "assets/character1nobackground.png",
+                "type": "image",
+                "key": "character1nobackground"
+            },
+            {
+                "url": "assets/character1wbackground.png",
+                "type": "image",
+                "key": "character1wbackground"
+            },
+            {
+                "url": "assets/character2nobackground.png",
+                "type": "image",
+                "key": "character2nobackground"
+            },
+            {
+                "url": "assets/character3nobackground.png",
+                "type": "image",
+                "key": "character3nobackground"
+            },
+            {
+                "url": "assets/character3wbackground.jpg",
+                "type": "image",
+                "key": "character3wbackground"
+            },
+            {
+                "url": "assets/characterIdle.png",
+                "type": "image",
+                "key": "characterIdle"
+            },
+            {
+                "url": "assets/characterStep.png",
+                "type": "image",
+                "key": "characterStep"
+            },
+            {
+                "url": "assets/Charactor10.gif",
+                "type": "image",
+                "key": "Charactor10"
+            },
+            {
+                "url": "assets/Crossroads.webp",
+                "type": "image",
+                "key": "Crossroads"
+            },
+            {
+                "url": "assets/dino.png",
+                "key": "dino",
+                "type": "image"
+            },
+            {
+                "url": "assets/ezgif.com-gif-to-sprite-converter.png",
+                "type": "image",
+                "key": "ezgif.com-gif-to-sprite-converter"
+            },
+            {
+                "url": "assets/ezgif.com-reverse.png",
+                "type": "image",
+                "key": "ezgif.com-reverse"
+            },
+            {
+                "url": "assets/gameScene1.webp",
+                "type": "image",
+                "key": "gameScene1"
+            },
+            {
+                "url": "assets/Gate.webp",
+                "type": "image",
+                "key": "Gate"
+            },
+            {
+                "url": "assets/House.webp",
+                "type": "image",
+                "key": "House"
+            },
+            {
+                "url": "assets/mc(4).gif",
+                "type": "image",
+                "key": "mc(4)"
+            },
+            {
+                "url": "assets/player_moving.json",
+                "type": "json",
+                "key": "player_moving"
+            },
+            {
+                "url": "assets/playerIdle.png",
+                "type": "image",
+                "key": "playerIdle"
+            },
+            {
+                "url": "assets/playerMoving.png",
+                "type": "image",
+                "key": "playerMoving"
+            },
+            {
+                "url": "assets/playerMovingLeft.png",
+                "type": "image",
+                "key": "playerMovingLeft"
+            },
+            {
+                "url": "assets/running.json",
+                "type": "animation",
+                "key": "running"
+            },
+            {
+                "url": "assets/TownScene.webp",
+                "type": "image",
+                "key": "TownScene"
+            }
+        ]
+    },
+    "meta": {
+        "app": "Phaser Editor 2D - Asset Pack Editor",
+        "contentType": "phasereditor2d.pack.core.AssetContentType",
+        "url": "https://phasereditor2d.com",
+        "version": 2,
+        "showAllFilesInBlocks": false,
+        "visible": true
+    }
+}

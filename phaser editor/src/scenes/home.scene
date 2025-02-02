@@ -1,0 +1,35 @@
+{
+    "id": "ed342835-c1e8-4b80-bb1c-22a2309732d2",
+    "sceneType": "SCENE",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "preloadPackFiles": [],
+        "createMethodName": "editorCreate",
+        "sceneKey": "home",
+        "compilerOutputLanguage": "TYPE_SCRIPT",
+        "borderWidth": 1280,
+        "borderHeight": 720
+    },
+    "displayList": [
+        {
+            "type": "Image",
+            "id": "1ed4190c-30f7-4db0-a710-8873d2b60dd4",
+            "label": "crossroads",
+            "texture": {
+                "key": "Crossroads"
+            },
+            "x": 646,
+            "y": 360,
+            "scaleX": 1.179349039894206,
+            "scaleY": 1.179349039894206
+        }
+    ],
+    "plainObjects": [],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    }
+}
