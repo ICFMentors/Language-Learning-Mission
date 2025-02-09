@@ -30,8 +30,8 @@
             "texture": {
                 "key": "characterIdle"
             },
-            "x": 427,
-            "y": 503,
+            "x": 285,
+            "y": 466,
             "scaleX": 0.3978902019419553,
             "scaleY": 0.3978902019419553,
             "animationPlayMethod": 1,
@@ -65,6 +65,12 @@
             "type": "Keyboard.Key",
             "label": "rightKey",
             "keyCode": "RIGHT"
+        },
+        {
+            "id": "d3064d5e-46f1-4238-b5fa-6af6f6e31667",
+            "type": "Keyboard.Key",
+            "label": "keyboard_key",
+            "keyCode": "P"
         }
     ],
     "meta": {

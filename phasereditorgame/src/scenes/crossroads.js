@@ -6,10 +6,10 @@
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
-export default class home extends Phaser.Scene {
+export default class crossroads extends Phaser.Scene {
 
 	constructor() {
-		super("home");
+		super("crossroads");
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.
@@ -31,25 +31,25 @@ export default class home extends Phaser.Scene {
 		// rightKey
 		const rightKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
 
-		// sceneKey
-		const sceneKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+		// keyboard_key
+		const keyboard_key = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 
 		// crossroads
 		const crossroads = this.add.image(0, 0, "Crossroads");
 		crossroads.setOrigin(0, 0);
 
 		// player
-		const player = this.add.sprite(427, 503, "characterIdle");
+		const player = this.add.sprite(285, 466, "characterIdle");
 		player.scaleX = 0.3978902019419553;
 		player.scaleY = 0.3978902019419553;
-		player.play("run");
+		player.play("running");
 
 		this.player = player;
 		this.upKey = upKey;
 		this.downKey = downKey;
 		this.leftKey = leftKey;
 		this.rightKey = rightKey;
-		this.sceneKey = sceneKey;
+		this.keyboard_key = keyboard_key;
 
 		this.events.emit("scene-awake");
 	}
@@ -65,7 +65,7 @@ export default class home extends Phaser.Scene {
 	/** @type {Phaser.Input.Keyboard.Key} */
 	rightKey;
 	/** @type {Phaser.Input.Keyboard.Key} */
-	sceneKey;
+	keyboard_key;
 
 	/* START-USER-CODE */
 

@@ -13,7 +13,24 @@
 <body>
     <div id="interact-prompt">Press SPACE to interact</div>
     <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js"></script>
-    <script src="/static/game.js"></script>
+    <script type="module" src="{{ url_for('playPhaserEditorGame', filename='src/main.js') }}"></script> 
+    <script>
+        // Fetch the asset-pack.json file
+        fetch("{{ url_for('playPhaserEditorGame', filename='assets/asset-pack.json') }}")
+            .then(response => response.json())
+            .then(assetPack => {
+                // Store the asset pack in a global variable
+                window.assetPack = assetPack;
+
+                // Load the main.js script after the asset pack is fetched
+                // const script = document.createElement('script');
+                // script.type = 'module';
+                // script.src = "{{ url_for('playPhaserEditorGame', filename='src/main.js') }}";
+                // console.log(assetPack);
+                // document.head.appendChild(script);
+            })
+            .catch(error => console.error('Error loading asset pack:', error));
+    </script>
     <div id="translate-box">
         <label for="user-input">Enter text to translate:</label>
         <input type="text" id="user-input" placeholder="Type here...">

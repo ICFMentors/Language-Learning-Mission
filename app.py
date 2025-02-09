@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, flash, abort, url_for, jsonify
+from flask import Flask, render_template, request, redirect, session, flash, abort, url_for, jsonify, send_from_directory
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash  # Add import for password hashing
 from google.oauth2 import id_token
@@ -203,6 +203,11 @@ def signup():
 @app.route('/game')
 def playGame():
     return render_template('game.html')
+@app.route('/phasereditorgame/<path:filename>')
+def playPhaserEditorGame(filename):
+    return send_from_directory('phasereditorgame', filename)
+
+
 @app.route('/town')
 def playTown():
     return render_template('town.html')
