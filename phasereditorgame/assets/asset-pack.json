@@ -12,6 +12,11 @@
                 "key": "background"
             },
             {
+                "url": "assets/bg.png",
+                "type": "image",
+                "key": "bg"
+            },
+            {
                 "url": "assets/cashierNoBackground.png",
                 "type": "image",
                 "key": "cashierNoBackground"
@@ -72,16 +77,6 @@
                 "type": "image"
             },
             {
-                "url": "assets/ezgif.com-gif-to-sprite-converter.png",
-                "type": "image",
-                "key": "ezgif.com-gif-to-sprite-converter"
-            },
-            {
-                "url": "assets/ezgif.com-reverse.png",
-                "type": "image",
-                "key": "ezgif.com-reverse"
-            },
-            {
                 "url": "assets/gameScene1.webp",
                 "type": "image",
                 "key": "gameScene1"
@@ -125,6 +120,11 @@
                 "url": "assets/running.json",
                 "type": "animation",
                 "key": "running"
+            },
+            {
+                "url": "assets/Screenshot 2025-02-02 131350.png",
+                "type": "image",
+                "key": "Screenshot 2025-02-02 131350"
             },
             {
                 "url": "assets/TownScene.webp",

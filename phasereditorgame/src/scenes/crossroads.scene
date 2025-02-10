@@ -23,22 +23,16 @@
             "originY": 0
         },
         {
-            "type": "Sprite",
+            "prefabId": "b228f13d-80b5-490a-bfbf-0176dc2f8832",
             "id": "fa8892db-50d7-44af-9be6-0e88691eda19",
+            "unlock": [
+                "x",
+                "y"
+            ],
             "label": "player",
             "scope": "CLASS",
-            "texture": {
-                "key": "characterIdle"
-            },
-            "x": 427,
-            "y": 503,
-            "scaleX": 0.3978902019419553,
-            "scaleY": 0.3978902019419553,
-            "animationPlayMethod": 1,
-            "animationKey": "run",
-            "animationFrameRate": 1,
-            "animationDelay": 10,
-            "animationRepeat": -1
+            "x": 287,
+            "y": 503
         }
     ],
     "plainObjects": [
