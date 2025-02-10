@@ -19,6 +19,11 @@ export default class house extends Phaser.Scene {
 	/** @returns {void} */
 	editorCreate() {
 
+		// house
+		const house = this.add.image(289, 280, "House");
+		house.scaleX = 0.863466352419906;
+		house.scaleY = 0.84011686972423;
+
 		this.events.emit("scene-awake");
 	}
 

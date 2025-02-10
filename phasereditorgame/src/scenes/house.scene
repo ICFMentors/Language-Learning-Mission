@@ -1,26 +1,35 @@
 {
-  "id": "e9a76c32-1b58-4c46-bb54-22eeed4e4fb0",
-  "settings": {
-    "compilerOutputLanguage": "JAVA_SCRIPT",
-    "javaScriptInitFieldsInConstructor": false,
-    "javaScriptGenerateFieldDeclarations": true,
-    "exportClass": true,
-    "autoImport": true,
-    "importFileExtension": true,
-    "createMethodName": "editorCreate",
-    "compilerInsertSpaces": false,
-    "compilerTabSize": 4,
-    "borderWidth": 572,
-    "borderHeight": 574,
-    "borderX": 0,
-    "borderY": 0,
-    "sceneKey": "house"
-  },
-  "sceneType": "SCENE",
-  "displayList": [],
-  "meta": {
-    "app": "Phaser Editor 2D - Scene Editor",
-    "url": "https://phasereditor2d.com",
-    "contentType": "phasereditor2d.core.scene.SceneContentType"
-  }
+    "id": "e9a76c32-1b58-4c46-bb54-22eeed4e4fb0",
+    "sceneType": "SCENE",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "importFileExtension": true,
+        "preloadPackFiles": [],
+        "createMethodName": "editorCreate",
+        "sceneKey": "house",
+        "borderWidth": 572,
+        "borderHeight": 574
+    },
+    "displayList": [
+        {
+            "type": "Image",
+            "id": "429a62a4-e2ab-4140-a57c-a87cbf05c213",
+            "label": "house",
+            "texture": {
+                "key": "House"
+            },
+            "x": 289,
+            "y": 280,
+            "scaleX": 0.863466352419906,
+            "scaleY": 0.84011686972423
+        }
+    ],
+    "plainObjects": [],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    }
 }

@@ -31,6 +31,9 @@ export default class home extends Phaser.Scene {
 		// rightKey
 		const rightKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
 
+		// sceneKey
+		const sceneKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+
 		// crossroads
 		const crossroads = this.add.image(0, 0, "Crossroads");
 		crossroads.setOrigin(0, 0);
@@ -46,6 +49,7 @@ export default class home extends Phaser.Scene {
 		this.downKey = downKey;
 		this.leftKey = leftKey;
 		this.rightKey = rightKey;
+		this.sceneKey = sceneKey;
 
 		this.events.emit("scene-awake");
 	}
@@ -60,6 +64,8 @@ export default class home extends Phaser.Scene {
 	leftKey;
 	/** @type {Phaser.Input.Keyboard.Key} */
 	rightKey;
+	/** @type {Phaser.Input.Keyboard.Key} */
+	sceneKey;
 
 	/* START-USER-CODE */
 
@@ -99,7 +105,7 @@ export default class home extends Phaser.Scene {
 
 
     if (this.leftKey.isDown) {
-        this.player.x -= 2;
+        this.player.x -= 2;  
 
         isMoving = true;
         isLeft = true;
@@ -116,6 +122,10 @@ export default class home extends Phaser.Scene {
         this.player.y += 2;
         isMoving = true;
     } 
+
+	if ((this.player.x > 230 && this.player.x < 350) && this.player.y > 550) {
+		this.scene.start('house');
+	}
 
     // // Change sprite based on movement
     if (isMoving) {
