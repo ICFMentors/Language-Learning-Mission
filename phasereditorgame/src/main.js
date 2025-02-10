@@ -36,15 +36,23 @@ class Boot extends Phaser.Scene {
 					// Loop through each object and modify the "url" property
 					for (let i = 0; i < data.section1.files.length; i++) {
 						
-						data.section1.files[i].url = "phasereditorgame/" + data.section1.files[i].url;
+						let url = data.section1.files[i].url;
+						url = "phasereditorgame/" + (url);
+						data.section1.files[i].url = url;
+						if (data.section1.files[i].type == "image")
+							this.load.image(data.section1.files[i].key, url);
+						else if (data.section1.files[i].type == "json")
+							this.load.json(data.section1.files[i].key, url);
+						else if (data.section1.files[i].type == "animation")
+							this.load.animation(data.section1.files[i].key, url);
+					};
 						
-					}
 			
 					// Update the JSON cache with the modified data
 					this.cache.json.add('pack', data);
 			
 					console.log('Modified asset pack:', data);
-					this.load.image('Crossroads', "{{ url_for('playPhaserEditorGame', filename='assets/Crossroads.webp') }}");
+					//this.load.image('Crossroads', "phasereditorgame/assets/Crossroads.webp");
 					this.load.pack('pack', data);
 				} else {
 					console.error('Failed to load asset pack or invalid structure:', data);
